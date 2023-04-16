@@ -1,0 +1,16 @@
+.caption p:first-child {
+    font-size: 35px;
+}
+
+.caption p:last-child {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 130px;
+    align-items: center;
+}

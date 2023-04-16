@@ -1,0 +1,14 @@
+.project-catalog {
+    margin-top: 30px;
+}
+
+.catalog-container {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.catalog-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

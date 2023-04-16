@@ -1,0 +1,30 @@
+.main-project {
+    border-right: 1px solid #DDDDDD;
+    width: 55%;
+    padding-right: 60px;
+}
+
+.main-project-container p{
+    font-size: 14px;
+    font-weight: bold;
+    color: #888888;
+}
+
+.main-con img{
+   width: 100%;
+}
+
+.main-project-detail p {
+    font-weight: normal;
+    color: black;
+    font-size: 16px;
+}
+
+.main-project-detail p:first-child {
+    font-size: 30px;
+}
+
+.main-project-detail p:last-child {
+    font-size: 14px;
+    font-weight: lighter;
+}
