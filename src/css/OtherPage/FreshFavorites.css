@@ -1,0 +1,103 @@
+.freshFavorites{
+    color: #282828;
+}
+
+.freshFavorites *{
+    margin: 0;
+}
+
+.freshFavorites-container{
+    display: flex;
+    flex-direction: column;
+    width: 1300px;
+    height: 530px;
+    margin: 0 auto;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3%;
+    border: 1px #656969 solid;
+}
+
+.title{
+    height: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    color:#656969;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.freshFavorites-con{
+    display: flex;
+    padding: 0px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project{
+    display: flex;
+    position: relative;
+    width: 25%;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.project-picture{
+    height:200px ;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px black solid;
+}
+
+.percentage{
+    position: relative;
+}
+
+.grayBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:10px ;
+    width: 100%;
+    background-color: #E8E8E8;
+}
+
+.greenBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:10px ;
+    width: 66.7%;
+    background-color: #037362;
+}
+.project-info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.project-name{
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.description{
+    display: flex;
+    height: 200px; /*still have bug when text is longer than box and they didnt make a new line*/
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 30px;
+    inline-size: 100%;
+    overflow-wrap: break-word;
+    border: 1px black solid;
+}
+
+.editor{
+    font-weight: 350;
+    font-size: 16px;
+    color: #656969;
+}
