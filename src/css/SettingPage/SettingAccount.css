@@ -1,0 +1,60 @@
+.settingaccount{
+    color: #282828;
+}
+
+.settingaccount *{
+    margin: 0;
+}
+.settingaccount-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.account-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.account-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+input{
+    padding: 7px;
+    width: 500px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+}
+
+.change-password{
+    width: 150px;
+    background-color: #3D3D66;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.change-password:hover{
+    background-color: #5a5a96;
+}
+
+.save-settings{
+    width: 150px;
+    background-color: #2752ff;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save-settings:hover{
+    background-color: blue;
+}
+
+.hidden{
+    display: none;
+}

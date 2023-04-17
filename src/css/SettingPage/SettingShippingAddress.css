@@ -1,0 +1,56 @@
+.settingshippingaddress{
+    color: #282828;
+}
+
+.settingshippingaddress *{
+    margin: 0;
+}
+
+.settingshippingaddress-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.new-address-and-saved-address-block{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.address-type{
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.settingshippingaddress-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.settingshippingaddress-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.save{
+    width: 500px;
+    background-color: #5555FF;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save:hover{
+    background-color: #0A007D;
+}
+
+input{
+    padding: 7px;
+    width: 500px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+}

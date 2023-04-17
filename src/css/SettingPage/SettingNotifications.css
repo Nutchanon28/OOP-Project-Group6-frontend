@@ -1,0 +1,25 @@
+.settingnotifications{
+    color: #282828;
+}
+
+.settingnotifications *{
+    margin: 0;
+}
+
+.settingnotifications-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.notifications-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.notifications-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

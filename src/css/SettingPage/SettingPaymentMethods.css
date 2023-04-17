@@ -1,0 +1,51 @@
+.settingpaymentmethods{
+    color: #282828;
+}
+
+.settingpaymentmethods *{
+    margin: 0;
+}
+
+.settingpaymentmethods-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.paymentmethods-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.paymentmethods-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+input{
+    padding: 7px;
+    width: 500px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+}
+
+select{
+    padding: 7px;
+    width: 500px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+}
+
+.save{
+    width: 150px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save:hover{
+    background-color: #015738;
+}
