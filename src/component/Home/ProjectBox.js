@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../css/Home/ProjectBox.css";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { VscBookmark } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const ProjectBox = ({ project }) => {
   const [projectImage, setProjectImage] = useState(null);
@@ -28,25 +29,27 @@ const ProjectBox = ({ project }) => {
   }
 
   return (
-    <div className="project-box">
-      {imageElement}
-      <div className="project-box-detail">
-        <p className="project-box-title">{project.name}</p>
-        <p>{project.id}%</p>
-        <p>{project.detail}</p>
-        <div className="operation-bar">
-          <div>
-            <VscBookmark />
-          </div>
-          <div>
-            <AiOutlineLike />
-          </div>
-          <div>
-            <AiOutlineDislike />
+    <Link to={`/project/${project.id}`}>
+      <div className="project-box">
+        {imageElement}
+        <div className="project-box-detail">
+          <p className="project-box-title">{project.name}</p>
+          <p>{project.id}%</p>
+          <p>{project.detail}</p>
+          <div className="operation-bar">
+            <div>
+              <VscBookmark />
+            </div>
+            <div>
+              <AiOutlineLike />
+            </div>
+            <div>
+              <AiOutlineDislike />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

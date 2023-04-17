@@ -7,14 +7,15 @@ const RecommendedProject = () => {
   const [recommendedProjects, setRecommendedProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const getProjects = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/view_all_project");
-    setRecommendedProjects(response.data);
-    console.log(response.data);
-    console.log(response.data.slice(3 * (currentPage - 1), 3 * currentPage));
-  };
-
   useEffect(() => {
+    const getProjects = async () => {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/view_all_project"
+      );
+      setRecommendedProjects(response.data);
+      console.log(response.data);
+      console.log(response.data.slice(3 * (currentPage - 1), 3 * currentPage));
+    };
     getProjects();
   }, []);
 

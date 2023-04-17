@@ -1,0 +1,83 @@
+.project-detail * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.project-detail {
+    max-width: 1250px;
+    margin: auto;
+    color: #656969;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project-image {
+    width: 67.5%;
+    margin-right: 36px;
+    /* max-height: 500px; */
+}
+
+.project-image img {
+    width: 100%;
+}
+
+.right-section {
+    width: 32.5%;
+    border-top: 6px solid #009E74;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail {
+    display: flex;
+    margin-top: 12px;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    height: 210px;
+}
+
+.detail > div {
+    margin-bottom: 20px;
+}
+
+.detail > div:first-child p:first-child {
+    color: #009E74;
+}
+
+.detail div p:first-child {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.operation-section {
+    display: flex;
+    height: 160px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.back-button {
+    background-color: #009E74;
+    color: #FFFFFF;
+    padding: 10px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.bookmark-button {
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.operation-section div:last-child {
+    font-size: 12px;
+}
