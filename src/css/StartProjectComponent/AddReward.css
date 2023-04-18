@@ -1,0 +1,284 @@
+.add-reward * { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.add-reward select{
+    background: white;
+    border: 1px solid #dad7d4;
+    color: #020621;
+    font-size: 14px;
+    margin: 0;
+    padding: 12px;
+    width: 100%;
+}
+
+.add-reward {
+
+}
+
+.add-reward-container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.add-reward-con {
+
+}
+
+.add-reward-header {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #656969;
+    margin-bottom: 72px;
+}
+
+.add-reward-header p:first-child{
+    font-size: 38px;
+    color: #282828;
+}
+
+.container-add-reward {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container-add-reward > .left {
+    width: 67.5%;
+}
+
+
+.container-add-reward > .right{
+    width: 30%;
+    
+}
+
+.container-add-reward > .right > p{
+    font-size: 14px;
+    color: #656969;
+    margin: 6px 0 12px;
+}
+
+.container-add-reward > .right > p:first-child{
+    font-size: 16px;
+    color: #282828;
+    margin: 0;
+}
+
+.add-reward input, input.input-text, input.password, textarea, textarea.input-textarea, iframe.editor, select {
+    background: white;
+    border: 1px solid #dad7d4;
+    color: #020621;
+    font-size: 14px;
+    margin: 0;
+    padding: 12px;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.section-add-reward {
+    font-size: 16px;
+    border-bottom: 1px solid #DCDEDD;
+    padding: 42.4px 0 65px;
+}
+
+.section-add-reward:first-child {
+    padding-top: 0;
+}
+
+.section-add-reward p {
+    color: #656969;
+    font-size: 14px;
+}
+
+.section-add-reward p:first-child{
+    padding-top: 0;
+    color: #282828;
+    font-size: 16px;
+}
+
+.section-add-reward p {
+    margin-bottom: 10px;
+}
+
+.section-add-reward textarea{
+    background: white;
+    border: 1px solid #dad7d4;
+    color: #020621;
+    font-size: 14px;
+    margin: 0;
+    padding: 12px;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    resize: none;
+}
+
+.add-reward-include {
+    padding: 10.5px 18px;
+    color: #FFFFFF;
+    background-color: #464646;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.add-reward-include:hover {
+    background-color: #000000;
+}
+
+.add-include {
+    padding: 24px;
+    border: 1px solid #DCDEDD;
+    margin-top: 12px;
+}
+
+.add-include  div {
+    padding: 10.5px 18px;
+    font-size: 14px;
+    text-align: center;
+    color: #656969;
+}
+
+
+.add-include div:nth-child(3) {
+    color: #FFFFFF;
+    background-color: #464646;
+    margin-top: 18px;
+}
+
+.add-include div:nth-child(3):hover {
+    background-color: #000000;
+}
+
+.include-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.include-preview-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    height: 60px;
+}
+
+.include-quantity {
+    display: flex;
+    flex-direction:  column;
+    width: 10%;
+}
+
+
+
+.include-name {
+    width: 75%;
+    border: 1px solid #DCDEDD;
+    background-color: #FBFBFA;
+    color: #282828;
+    padding: 12px;
+    font-size: 14px;
+}
+
+
+
+.remove-include {
+    width: 10%;
+    text-align: end;
+    font-size: 14px;
+    padding: 12px 0;
+    color: #656969;
+}
+
+.estimated-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.estimated-bar select {
+    width: 48%;
+}
+
+.radio-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #DCDEDD;
+    padding: 18px;
+}
+
+.radio-option:first-child {
+    margin-bottom: 6px;
+}
+
+.radio-button {
+    width: 18px;
+    height: 18px;
+    margin-right: 18px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px inset, rgba(0, 0, 0, 0.2) 0px 0px 0px 1px inset;
+}
+
+.radio-button-click {
+    background-color: #009E74
+}
+
+.radio-content {
+
+}
+
+.inner-button {
+    width: 5px;
+    height: 5px;
+    margin: 6.5px auto;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.radio-dropdown {
+    padding: 18px;
+    border: 1px solid #DCDEDD;
+    border-top: 0;
+}
+
+.save-reward-button {
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.save-reward-button:hover {
+    background-color: #015738;;
+}
+
+.cancel-reward-button {
+    margin-top: 16px;
+    font-size: 14px;
+    padding: 10.5px 36px;
+    color: #656969;
+    text-align: center;
+}
+
+.cancel-reward-button:hover {
+    color: #282828;
+}
+
+
+
