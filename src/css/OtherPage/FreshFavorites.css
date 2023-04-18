@@ -7,15 +7,16 @@
 }
 
 .freshFavorites-container{
-    display: flex;
+    display: block;
     flex-direction: column;
-    width: 1300px;
+    width: 90%;
     height: 530px;
     margin: 0 auto;
     padding-left: 10%;
-    padding-right: 10%;
     padding-top: 3%;
-    border: 1px #656969 solid;
+    padding-bottom: 6%;
+    border-top: 1px #656969 solid;
+    border-bottom: 1px #656969 solid;
 }
 
 .title{
@@ -29,17 +30,17 @@
 
 .freshFavorites-con{
     display: flex;
+    flex-direction: row;
     padding: 0px;
     overflow-x: scroll;
     white-space:nowrap;
-    flex-direction: row;
     justify-content: space-between;
 }
 
 .project{
     display: flex;
     position: relative;
-    width: 25%;
+    width: 100%;
     margin: 10px;
     flex-direction: column;
 }
@@ -79,22 +80,27 @@
     margin-top: 10px;
 }
 
+.project-info p{
+    display: block;
+    margin-top: 10px;
+    text-align:justify;
+}
+
 .project-name{
-    font-weight: 600;
+    width:250px;
+    font-weight: 400;
     font-size: 20px;
     margin-bottom: 30px;
+    white-space: normal;
 }
 
 .description{
-    display:flex;
-    height: 200px; /*still have bug when text is longer than box and they didnt make a new line*/
-    font-weight: 600;
+    display:block;
+    width : 100%;
     font-size: 16px;
     margin-bottom: 30px;
-    width : 100%;
-    /* inline-size: 100%;
-    overflow-wrap: break-word; */
-    border: 1px black solid;
+    white-space:normal;
+    overflow:auto; 
 }
 
 .editor{

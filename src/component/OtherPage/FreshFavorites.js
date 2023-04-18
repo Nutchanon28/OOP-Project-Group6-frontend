@@ -1,109 +1,49 @@
-import React from "react";
-import "../../css/OtherPage/FreshFavorites.css"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../../css/OtherPage/FreshFavorites.css";
 
-function FreshFavorites(){
-    return (
-        <div className="freshFavorites">
-            <div className="freshFavorites-container">
-                <div>
-                    <p className="title">FRESH FAVORITES</p>
-                </div>
-                <div className="freshFavorites-con">
-                    <div className="project">
-                        <div className="project-picture">
+function FreshFavorites() {
+  const [recommendedProjects, setRecommendedProjects] = useState([]);
 
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className ="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className ="editor">By Yoshito Darmon-Shimamori</p>
+  useEffect(() => {
+    const getProjects = async () => {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/view_all_project"
+      );
+      console.log(response.data);
+      setRecommendedProjects(response.data);
+    };
+    getProjects();
+  }, []);
 
-                        </div>
-                    </div>
-                    <div className="project">
-                        <div className="project-picture">
-
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className="editor">By Yoshito Darmon-Shimamori</p>
-
-                        </div>
-                    </div>
-                    <div className="project">
-                        <div className="project-picture">
-
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className="editor">By Yoshito Darmon-Shimamori</p>
-
-                        </div>
-                    </div>
-                    <div className="project">
-                        <div className="project-picture">
-
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className="editor">By Yoshito Darmon-Shimamori</p>
-
-                        </div>
-                    </div>
-                    <div className="project">
-                        <div className="project-picture">
-
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className="editor">By Yoshito Darmon-Shimamori</p>
-
-                        </div>
-                    </div>
-                    <div className="project">
-                        <div className="project-picture">
-
-                        </div>
-                        <div className="percentage">
-                            <p className="grayBox"> </p>
-                            <p className="greenBox"> </p>
-                        </div>
-                        <div className="project-info">
-                            <p className ="project-name">In Search of the Lost Words</p>
-                            <p className="description">A graphic novel exploring the meaning of being bilingual, and that invites the reader to become the writer in their minority language.</p>
-                            <p className="editor">By Yoshito Darmon-Shimamori</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="freshFavorites">
+      <div className="freshFavorites-container">
+        <div>
+          <p className="title">FRESH FAVORITES</p>
         </div>
-    )
+        <div className="freshFavorites-con">
+          {recommendedProjects.map((project) => {
+            return (
+              <div className="project" key={project.id}>
+                <div className="project-picture"></div>
+                <div className="percentage">
+                  <p className="grayBox"> </p>
+                  <p className="greenBox"> </p>
+                </div>
+                <div className="project-info">
+                  <p className="project-name">{project.name}</p>
+                  <p className="description">{project.detail}</p>
+                  <p className="editor">By {project.creator}</p>
+                </div>
+              </div>
+            );
+          })}
+
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default FreshFavorites
-
+export default FreshFavorites;
