@@ -7,7 +7,7 @@
 }
 
 .settingnotifications-container{
-    width: 1000px;
+    width: 700px;
     margin-top: 30px;
     margin-bottom: 0;
     margin-left: 180px;
@@ -16,10 +16,19 @@
 .notifications-detail-block{
     margin-top: 30px;
     margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #F1EEEA;
 }
 
-.notifications-detail-block p:first-child{
+.notification-type{
     font-weight: 500;
+    font-size: 20px;
     margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.notification-element{
+    margin-left: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }

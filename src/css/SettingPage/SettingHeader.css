@@ -31,5 +31,9 @@
 .account{
     padding-bottom: 20px;
     border-bottom: 4px solid blue;
+
+}
+
+.account:focus{
     font-weight: 500;
 }

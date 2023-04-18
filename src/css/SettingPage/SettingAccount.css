@@ -5,6 +5,7 @@
 .settingaccount *{
     margin: 0;
 }
+
 .settingaccount-container{
     width: 1000px;
     margin-top: 30px;
@@ -15,7 +16,6 @@
 .account-detail-block{
     margin-top: 30px;
     margin-bottom: 30px;
-
 }
 
 .account-detail-block p:first-child{
@@ -24,11 +24,17 @@
     margin-bottom: 10px;
 }
 
+
+.small-detail{
+    font-size: 13px;
+}
+
 input{
-    padding: 7px;
+    padding: 10px;
     width: 500px;
     border-width: 0.25px;
     border-color: #dcdedd;
+    border-radius: 5px
 }
 
 .change-password{

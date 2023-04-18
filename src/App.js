@@ -13,7 +13,7 @@ function App() {
         <Header />
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<SettingPage />} />
+          <Route path="SettingPage/*" element={<SettingPage />} />
 
         </Routes>
       </DataProvider>
