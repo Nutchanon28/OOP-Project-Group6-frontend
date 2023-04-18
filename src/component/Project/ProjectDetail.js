@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../css/Project/ProjectDetail.css"
 
-const ProjectDetail = ({ pledgeReceived, numberOfBackers, pledgeGoal, pledgeDuration }) => {
+const ProjectDetail = ({ pledgeReceived, numberOfBackers, pledgeGoal, pledgeDuration, handleBack }) => {
     return (
         <div className='project-detail'>
             <div className='project-con'>
@@ -25,7 +25,7 @@ const ProjectDetail = ({ pledgeReceived, numberOfBackers, pledgeGoal, pledgeDura
                             </div>
                         </div>
                         <div className='operation-section'>
-                            <div className='back-button'>
+                            <div className='back-button' onClick={handleBack}>
                                 Back this project
                             </div>
                             <div className='bookmark-button'>

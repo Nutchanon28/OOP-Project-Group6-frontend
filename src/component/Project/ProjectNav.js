@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/Project/ProjectNav.css'
 
-const ProjectNav = () => {
+const ProjectNav = ({ handleBack }) => {
     return (
         <div className='project-nav'>
             <div className='container'>
@@ -14,7 +14,7 @@ const ProjectNav = () => {
                         <p>Community</p>
                     </div>
                     <div className='project-operation-section'>
-                        <div className='back-button'>
+                        <div className='back-button' onClick={handleBack}>
                         Back this project
                         </div>
                         <div className='bookmark-button'>

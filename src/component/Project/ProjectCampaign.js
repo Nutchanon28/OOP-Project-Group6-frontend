@@ -3,7 +3,7 @@ import "../../css/Project/ProjectCampaign.css";
 import { BiUserCircle } from "react-icons/bi";
 import Reward from "./Reward";
 
-const ProjectCampaign = ({ projectDetail, creator, rewards }) => {
+const ProjectCampaign = ({ projectDetail, creator, rewards, setRewardId }) => {
   return (
     <div className="project-campaign">
       <div className="container">
@@ -35,7 +35,11 @@ const ProjectCampaign = ({ projectDetail, creator, rewards }) => {
             {rewards ? (
               <>
                 {rewards.map((reward) => {
-                  return <Reward reward={reward} key={reward.id} />;
+                  return (
+                    <div onClick={() => setRewardId(reward.id)} key={reward.id}>
+                      <Reward reward={reward} key={reward.id} />
+                    </div>
+                  );
                 })}
               </>
             ) : (
