@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../../context/DataContext";
 import "../../css/PledgeSummary/PledgeSummary.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PledgeSummary = () => {
   const [project, setProject] = useState({});
@@ -11,22 +12,29 @@ const PledgeSummary = () => {
   const [bonusCost, setBonusCost] = useState(0);
   const [creditId, setCreditId] = useState(0);
   const { userId, projectId, rewardId } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("test");
-
-    const response = await axios.post(
-      "http://127.0.0.1:8000/back_the_project",
-      {
-        project_id: parseInt(projectId),
-        user_id: parseInt(userId),
-        reward_id: parseInt(rewardId),
-        credit_card_id: parseInt(creditId),
-        bonus_cost: parseInt(bonusCost),
+    if (!creditId) {
+      alert("Please select your credit card.");
+    } else {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/back_the_project",
+        {
+          project_id: parseInt(projectId),
+          user_id: parseInt(userId),
+          reward_id: parseInt(rewardId),
+          credit_card_id: parseInt(creditId),
+          bonus_cost: parseInt(bonusCost),
+        }
+      );
+      console.log(response);
+      if (response.status === 200) {
+        navigate(`/project/${projectId}`);
       }
-    );
-    console.log(response);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +87,7 @@ const PledgeSummary = () => {
                   placeholder="bonus cost"
                   value={bonusCost}
                   onChange={(e) => setBonusCost(e.target.value)}
-                  min="1"
+                  min="0"
                 />
               </div>
               <div className="totalAmount">
@@ -101,7 +109,9 @@ const PledgeSummary = () => {
         {paymentMethods?.map((paymentMethod) => {
           return (
             <div
-              className="paymentMethod"
+              className={`paymentMethod ${
+                paymentMethod.id === creditId ? "selectedPaymentMethod" : ""
+              }`}
               key={paymentMethod.id}
               onClick={() => setCreditId(paymentMethod.id)}
             >

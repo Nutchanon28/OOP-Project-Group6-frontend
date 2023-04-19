@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import DataContext from '../../context/DataContext'
 import '../../css/Project/ProjectNav.css'
 
 const ProjectNav = ({ handleBack }) => {
+    const { setProjectPage } = useContext(DataContext);
+
     return (
         <div className='project-nav'>
             <div className='container'>
                 <div className='project-nav-con'>
                     <div className='about-project'>
-                        <p>Campaign</p>
-                        <p>FAQ</p>
-                        <p>Updates</p>
-                        <p>Comments</p>
-                        <p>Community</p>
+                        <p onClick={() => setProjectPage("Campaign")}>Campaign</p>
+                        <p onClick={() => setProjectPage("FAQ")}>FAQ</p>
+                        <p onClick={() => setProjectPage("Updates")}>Updates</p>
+                        <p onClick={() => setProjectPage("Comments")}>Comments</p>
+                        {/* <p>Community</p> */}
                     </div>
                     <div className='project-operation-section'>
                         <div className='back-button' onClick={handleBack}>

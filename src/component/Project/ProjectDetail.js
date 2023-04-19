@@ -1,13 +1,13 @@
 import React from 'react'
 import "../../css/Project/ProjectDetail.css"
 
-const ProjectDetail = ({ pledgeReceived, numberOfBackers, pledgeGoal, pledgeDuration, handleBack }) => {
+const ProjectDetail = ({ image, pledgeReceived, numberOfBackers, pledgeGoal, pledgeDuration, handleBack }) => {
     return (
         <div className='project-detail'>
             <div className='project-con'>
                 <div className='project-container'>
                     <div className='project-image'>
-                        <img src="https://via.placeholder.com/600/92c952" alt="project"/>
+                        <img src={image} alt="project"/>
                     </div>
                     <div className='right-section'>
                         <div className='detail'>

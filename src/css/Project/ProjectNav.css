@@ -49,6 +49,10 @@
     justify-content: space-between;
 }
 
+.about-project p:hover {
+    cursor: pointer;
+}
+
 .project-operation-section {
     width: 25%;
     display: flex;

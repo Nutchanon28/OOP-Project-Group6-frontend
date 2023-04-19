@@ -23,7 +23,7 @@ const ProjectBox = ({ project }) => {
   if (projectImage) {
     imageElement = (
       <div className="recommended-project-image">
-        <img src={projectImage.url} alt="project" />
+        <img src={project.image} alt="project" />
       </div>
     );
   }
@@ -35,7 +35,7 @@ const ProjectBox = ({ project }) => {
         <div className="project-box-detail">
           <p className="project-box-title">{project.name}</p>
           <p>{project.id}%</p>
-          <p>{project.detail}</p>
+          <p>By {project.creator}</p>
           <div className="operation-bar">
             <div>
               <VscBookmark />

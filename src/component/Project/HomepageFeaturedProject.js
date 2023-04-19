@@ -11,6 +11,7 @@ import DataContext from "../../context/DataContext";
 
 const HomepageFeaturedProject = () => {
   const [project, setProject] = useState({});
+  const [hasCommented, setHasCommented] = useState(false);
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { setRewardId, setProjectId } = useContext(DataContext);
@@ -18,7 +19,7 @@ const HomepageFeaturedProject = () => {
   const handleBack = () => {
     setProjectId(projectId);
     navigate("/backing");
-  }
+  };
 
   useEffect(() => {
     const getProject = async () => {
@@ -28,7 +29,9 @@ const HomepageFeaturedProject = () => {
       setProject(response.data);
     };
     getProject();
-  }, [projectId]);
+    setHasCommented(false);
+    console.log("is this loop");
+  }, [projectId, hasCommented]);
 
   return (
     <div className="homepage-project">
@@ -37,18 +40,23 @@ const HomepageFeaturedProject = () => {
         projectCategory={project.project_detail?.category}
       />
       <ProjectDetail
+        image={project.project_detail?.image}
         pledgeReceived={project.project_detail?.pledge_received}
         numberOfBackers={project.project_detail?.number_of_backers}
         pledgeGoal={project.project_detail?.pledge_goal}
         pledgeDuration={project.project_detail?.project_duration}
         handleBack={handleBack}
       />
-      <ProjectNav handleBack={handleBack}/>
+      <ProjectNav handleBack={handleBack} />
       <ProjectCampaign
         projectDetail={project.project_detail?.detail}
         creator={project.creator_detail}
+        faqs={project.faqs}
         rewards={project.pledge_rewards}
+        updates={project.updates}
+        comments={project.comments}
         setRewardId={setRewardId}
+        setHasCommented={setHasCommented}
       />
     </div>
   );
