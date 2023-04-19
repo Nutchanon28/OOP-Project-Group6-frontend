@@ -106,10 +106,10 @@ const ProjectCampaign = ({
             ))}
           {projectPage === "Updates" &&
             (updates ? (
-              <div>
+              <div className="updates-list">
                 {updates.map((update) => {
                   return (
-                    <div key={update.update_title}>
+                    <div className="update" key={update.update_title}>
                       <p>{update.update_title}</p>
                       <p>{update.update_creator}</p>
                       <p>{update.update_image}</p>
@@ -124,22 +124,34 @@ const ProjectCampaign = ({
             ))}
           {projectPage === "Comments" &&
             (comments ? (
-              <div className="comments-list">
-                {comments.map((comment) => {
-                  return (
-                    <div className="comment" key={comment.writer}>
-                      <p>{comment.writer}</p>
-                      <p>{comment.sending_time}</p>
-                      <p>{comment.text}</p>
-                    </div>
-                  );
-                })}
+              <div className="comment-cotainer">
+                <div className="comments-list">
+                  {comments.map((comment) => {
+                    return (
+                      <div className="comment" key={comment.sending_time}>
+                        <p>{comment.writer}</p>
+                        <p>{comment.sending_time}</p>
+                        <p>{comment.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <form className="comment-form" onSubmit={handleSubmit}>
+                  <label htmlFor="comment">comment:</label>
+                  <textarea
+                    type="text"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="comment"
+                  />
+                  <button type="submit">Send</button>
+                </form>
               </div>
             ) : (
               <p>loading</p>
             ))}
-          {projectPage === "Comments" && (
-            <form onSubmit={handleSubmit}>
+          {/* {projectPage === "Comments" && (
+            <form className="comment-form" onSubmit={handleSubmit}>
               <label htmlFor="comment">comment:</label>
               <input
                 type="text"
@@ -149,7 +161,7 @@ const ProjectCampaign = ({
               />
               <button type="submit">Send</button>
             </form>
-          )}
+          )} */}
         </div>
       </div>
     </div>

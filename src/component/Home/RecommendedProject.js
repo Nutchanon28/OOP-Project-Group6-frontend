@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ProjectBox from "./ProjectBox";
 import "../../css/Home/RecommendedProject.css";
-import axios from "axios";
 
-const RecommendedProject = () => {
-  const [recommendedProjects, setRecommendedProjects] = useState([]);
+const RecommendedProject = ({ recommendedProjects }) => {
   const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    const getProjects = async () => {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/view_all_project"
-      );
-      setRecommendedProjects(response.data);
-      console.log(response.data);
-      console.log(response.data.slice(3 * (currentPage - 1), 3 * currentPage));
-    };
-    getProjects();
-  }, []);
 
   return (
     <div className="recommended-project">

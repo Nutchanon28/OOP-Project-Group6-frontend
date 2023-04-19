@@ -34,7 +34,7 @@ const ProjectBox = ({ project }) => {
         {imageElement}
         <div className="project-box-detail">
           <p className="project-box-title">{project.name}</p>
-          <p>{project.id}%</p>
+          <p>{project.percent} %</p>
           <p>By {project.creator}</p>
           <div className="operation-bar">
             <div>

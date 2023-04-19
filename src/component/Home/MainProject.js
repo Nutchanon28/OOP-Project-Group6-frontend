@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../css/Home/MainProject.css";
 
-const MainProject = () => {
+const MainProject = ({ featuredProject }) => {
   const [mainProject, setMainProject] = useState({});
   const [mainProjectImage, setMainProjectImage] = useState("");
   const loadMainProject = async () => {
@@ -26,11 +26,11 @@ const MainProject = () => {
       <div className="main-project-container">
         <p>FEATURED PROJECT</p>
         <div className="main-con">
-          <img src={mainProjectImage.url} alt="main project" />
+          <img src={featuredProject.image} alt="main project" />
           <div className="main-project-detail">
-            <p>{mainProject.title}</p>
-            <p>{mainProject.body}</p>
-            <p>By {mainProject.title}</p>
+            <p>{featuredProject.name}</p>
+            <p>{featuredProject.detail}</p>
+            <p>By {featuredProject.creator}</p>
           </div>
         </div>
       </div>

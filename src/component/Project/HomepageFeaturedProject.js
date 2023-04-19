@@ -27,10 +27,13 @@ const HomepageFeaturedProject = () => {
         `http://127.0.0.1:8000/view_project/${projectId}`
       );
       setProject(response.data);
+      console.log(response.data.comments);
     };
     getProject();
+
+    console.log("this won't cause infinite loop");
     setHasCommented(false);
-    console.log("is this loop");
+    setProjectId(projectId);
   }, [projectId, hasCommented]);
 
   return (

@@ -59,7 +59,8 @@ const PledgeSummary = () => {
         <h1>Pledge Summary</h1>
         {project && (
           <div className="pledgeSummaryDetailBox">
-            <img src="https://via.placeholder.com/600/92c952" alt="project" />
+            {/* <img src="https://via.placeholder.com/600/92c952" alt="project" /> */}
+            <img src={project.project_detail?.image} alt="project" />
             <div className="pledgeSummaryDetailBoxText">
               <p>{project.project_detail?.name}</p>
               <p>{project.project_detail?.pledge_received} Baht received</p>
@@ -94,8 +95,12 @@ const PledgeSummary = () => {
                 <p>Total amount</p>
                 <p>
                   {parseInt(bonusCost) && parseInt(bonusCost) >= 0
-                    ? reward?.reward_goal + parseInt(bonusCost)
-                    : reward?.reward_goal}{" "}
+                    ? reward
+                      ? reward.reward_goal + parseInt(bonusCost)
+                      : parseInt(bonusCost)
+                    : reward
+                    ? reward.reward_goal
+                    : 0}{" "}
                   Baht
                 </p>
               </div>
