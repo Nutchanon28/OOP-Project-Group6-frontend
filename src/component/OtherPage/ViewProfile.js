@@ -1,12 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../../css/OtherPage/ViewProfile.css";
+import "../../css/OtherPage/About.css";
+import "../../css/OtherPage/Backed.css";
 
+// /view_backed_project
 function ViewProfile() {
   const [aboutClick, setAboutClick] = useState(true);
   useEffect(() => {
     console.log(aboutClick);
   }, [aboutClick]);
+
+  
 
   return (
     <div className="profile">
@@ -29,33 +34,48 @@ function ViewProfile() {
             <div onClick={() => setAboutClick(false)}>Backed</div>
           </div>
         </div>
+
         <div className="information">
           <div className="about">
             {aboutClick && (
               <>
                 <div className="part-info">
                   <p className="part-head">Biography</p>
-                  <p className="part-description">edit biography</p>
+                  <p className="part-description">
+                    this is my biography that i didnt write it
+                  </p>
+                  <p className="edit-description">edit biography</p>
                 </div>
                 <div className="part-info">
                   <p className="part-head">Websites</p>
-                  <p className="part-description">edit websites</p>
+                  <p className="part-description">
+                    this is my biography that i didnt write it
+                  </p>
+                  <p className="edit-description">edit websites</p>
                 </div>
               </>
             )}
           </div>
           <div className="backed">
             {!aboutClick && (
-                <>
-                    <div className="part-info2">
-                        <p className="part-head">The Name Of This</p>
-                        <div className="part-picture"></div>
-                        <p className="part-description">
-                            This profile page is only visible to you This profile page is
-                            only visible to you
-                        </p>
-                    </div>
-                </>
+              <>
+              <div className="project">
+                <div className="project-picture"></div>
+                <div className="project-info">
+                  <p className="project-name">project-name</p>
+                  <p className="description">project-detail</p>
+                  <p className="editor">By project-creator</p>
+                </div>
+              </div>
+              <div className="project">
+                <div className="project-picture"></div>
+                <div className="project-info">
+                  <p className="project-name">project-name</p>
+                  <p className="description">description description description description</p>
+                  <p className="editor">By project-creator</p>
+                </div>
+              </div>
+              </>
             )}
           </div>
         </div>

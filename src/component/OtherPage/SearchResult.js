@@ -13,11 +13,12 @@ function SearchResult() {
     e.preventDefault();
     console.log("you have entered")
 
-    const response= await axios.get(
+    const response= await fetch(
       `http://127.0.0.1:8000/search_project?keyword=${keyword}&category=${category}`
     )
-    setSearchedProjects(response.data)
-    console.log(response);
+    const responseJson = await response.json()
+    setSearchedProjects(responseJson)
+    console.log(responseJson);
   }
 
   return (
