@@ -1,0 +1,106 @@
+.settingpaymentmethods{
+    color: #282828;
+}
+
+.settingpaymentmethods *{
+    margin: 0;
+}
+
+.settingpaymentmethods-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+.saved-paymentmethod-block{
+    display: flex; 
+    flex-direction: row;
+    width: 1300px;
+}
+
+.saved-paymentmethod-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 93px;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #dcdedd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.saved-paymentmethod-detail-block:last-child{
+    margin-right: 0;
+}
+
+.delete{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #08207F;
+}
+
+.new-paymentmethod-block{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1300px;
+}
+
+.new-paymentmethod-block{
+    margin-top: 40px;
+}
+
+.paymentmethods-detail-block{
+    margin-bottom: 20px;
+}
+
+.paymentmethods-detail-block p:first-child{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.card-number{
+    padding: 10px;
+    width: 600px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.expiration{
+    padding: 10px;
+    width: 300px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.cvc{
+    padding: 10px;
+    width: 300px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.select-payment-country{
+    padding: 10px;
+    width: 1300px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.save-payment{
+    width: 1280px;
+    margin-top: 30px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save-payment:hover{
+    background-color: #015738;
+}

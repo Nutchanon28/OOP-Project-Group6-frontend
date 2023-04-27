@@ -1,0 +1,95 @@
+.settingshippingaddress{
+    color: #282828;
+}
+
+.settingshippingaddress *{
+    margin: 0;
+}
+
+.settingshippingaddress-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.new-address-and-saved-address-block{
+    display: flex; 
+    flex-direction: row;
+    width: 1200px;
+}
+
+.address-type{
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.new-shippingaddress-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.new-shippingaddress-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.save-shipping-address{
+    width: 497px;
+    background-color: #5555FF;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save-shipping-address:hover{
+    background-color: #0A007D;
+}
+
+input{
+    padding: 10px;
+    width: 495px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+}
+
+.saved-shippingaddress-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #dcdedd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.saved-address-detail-block{
+    margin-left: 100px;
+}
+
+.delete{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #08207F;
+}
+
+.select-shipping-country{
+    padding: 10px;
+    width: 515px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.notification-element{
+    display: flex; 
+    flex-direction: row;
+    justify-content: start;
+    padding: 10px;
+}
+
+.notification-element p:last-child{
+    margin-left: 10px;
+}
