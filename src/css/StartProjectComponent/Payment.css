@@ -1,0 +1,105 @@
+.set-payment * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.set-payment {
+
+}
+
+.set-payment select {
+    padding: 12px;
+    border: 1px solid #DEDEDE;
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.set-payment-container {
+}
+
+.set-payment-con {
+
+}
+
+.payment-header {
+    height: 258px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #DCDEDD;
+}
+
+.payment-header h1 {
+    text-align: center;
+    color: #282828;
+    font-weight: 400;
+}
+
+.payment-header h1 + p {
+    max-width: 1000px;
+    text-align: center;
+    color: #656969;
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.payment-section {
+    border-bottom: 1px solid #DCDEDD;
+}
+
+.flex-payment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1250px;
+    margin: 42px auto;
+}
+
+.left-element-payment {
+    width: 30%;
+}
+
+.left-element-payment p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #656969;
+}
+
+.left-element-payment p:first-child {
+    font-size: 18px;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+.left-element-payment p:last-child{
+    margin-bottom: 0;
+}
+
+.right-element-payment {
+    width: 58%;
+}
+
+.title-payment input, select {
+    padding: 12px;
+    border: 1px solid #DEDEDE;
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.title-payment {
+    margin-bottom: 42px;
+}
+
+.right-element-payment p{
+    font-size: 14px;
+    color: #282828;
+}
+
+.width50 {
+    width: 50%;
+    margin: 0 auto;
+}
+
