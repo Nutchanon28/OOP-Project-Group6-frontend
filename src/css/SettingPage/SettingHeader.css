@@ -1,0 +1,39 @@
+.settingheader{
+    border-bottom: 1px solid #dcdedd;
+    color: #282828;
+}
+
+.settingheader *{
+    margin: 0;
+}
+
+.settingheader-container{
+    width: 1000px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.settings{
+    font-weight: 500;
+    font-size: 50px;
+    margin-top: 40px;
+    margin-bottom: 45px;
+}
+
+.setting-option{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    width: 750px;
+}
+
+.account{
+    padding-bottom: 20px;
+    border-bottom: 4px solid blue;
+
+}
+
+.account:focus{
+    font-weight: 500;
+}

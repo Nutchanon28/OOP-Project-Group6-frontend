@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Home from "./component/Home/Home";
+import SettingPage from "./component/SettingPage/SettingPage";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <DataProvider>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="SettingPage/*" element={<SettingPage />} />
+
         </Routes>
       </DataProvider>
     </div>
