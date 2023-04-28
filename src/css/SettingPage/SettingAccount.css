@@ -47,6 +47,7 @@ input{
 
 .change-password:hover{
     background-color: #5a5a96;
+    cursor: pointer;
 }
 
 .save-settings{
@@ -59,8 +60,19 @@ input{
 
 .save-settings:hover{
     background-color: blue;
+    cursor: pointer;
 }
 
 .hidden{
     display: none;
+}
+
+.showSaved{
+    font-size: 13px;
+    color: #028858;
+}
+
+.showIncorrect{
+    font-size: 13px;
+    color: #dc1414;
 }

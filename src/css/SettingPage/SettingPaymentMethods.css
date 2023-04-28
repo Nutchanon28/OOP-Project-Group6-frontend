@@ -10,7 +10,7 @@
     width: 1000px;
     margin-top: 30px;
     margin-bottom: 0;
-    margin-left: 180px;
+    margin-left: 120px;
 }
 .saved-paymentmethod-block{
     display: flex; 
@@ -33,11 +33,21 @@
     margin-right: 0;
 }
 
+.saved-paymentmethod-detail-block:hover{
+    box-shadow: 0 3px 6px 1px rgba(0,0,0,0.17);
+    transition: all 0.25s ease-in-out;
+    outline: 0;
+}
+
 .delete{
     position: absolute;
     right: 10px;
     bottom: 10px;
     color: #08207F;
+}
+
+.delete:hover{
+    cursor: pointer;
 }
 
 .new-paymentmethod-block{
@@ -103,4 +113,5 @@
 
 .save-payment:hover{
     background-color: #015738;
+    cursor: pointer;
 }

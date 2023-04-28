@@ -23,14 +23,14 @@ function SettingPaymentMethods(){
     }
 
     async function getMyPaymentMethod(){
-        const response = await fetch(`http://127.0.0.1:8000/get_creditcard?user_id=${1}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_payment_method?user_id=${1}`)
         const responsejson = await response.json()
         setMyPaymentMethod(responsejson)
         console.log(responsejson)
     }
 
     async function onPaymentMethodSave(){
-        if (myPaymentMethod.length === 3)
+        if (myPaymentMethod.length >= 3)
         return
         if (
             paymentMethod._CreditCardTransaction__card_number ==="" ||
@@ -45,7 +45,7 @@ function SettingPaymentMethods(){
             cvc:paymentMethod._CreditCardTransaction__cvc,
             country:paymentMethod._CreditCardTransaction__country
         }
-        await fetch(`http://127.0.0.1:8000/add_creditcard?user_id=${1}`,{
+        await fetch(`http://127.0.0.1:8000/add_payment_method?user_id=${1}`,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newPayment)
@@ -62,7 +62,7 @@ function SettingPaymentMethods(){
 
     async function onPaymentMethodDelete(paymentMethodID){
         console.log(paymentMethodID)
-        await fetch(`http://127.0.0.1:8000/delete_creditcard?user_id=${1}&creditcard_id=${paymentMethodID}`,{
+        await fetch(`http://127.0.0.1:8000/delete_payment_method?user_id=${1}&creditcard_id=${paymentMethodID}`,{
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify()
@@ -78,12 +78,12 @@ function SettingPaymentMethods(){
     if (myPaymentMethod.length){
         myPaymentMethodElements = myPaymentMethod.map((payment) => {
             return(
-                <div key={payment._CreditCardTransaction__id} className="saved-paymentmethod-detail-block">
+                <div key={payment.id} className="saved-paymentmethod-detail-block">
                     <p>{payment._CreditCardTransaction__card_number}</p>
                     <p>{payment._CreditCardTransaction__expiration}</p>
                     <p>{payment._CreditCardTransaction__cvc}</p>
                     <p>{payment._CreditCardTransaction__country}</p>
-                    <p className="delete" onClick={()=>{onPaymentMethodDelete(payment._CreditCardTransaction__id)}}><u>Delete</u></p>
+                    <p className="delete" onClick={()=>{onPaymentMethodDelete(payment.id)}}><u>Delete</u></p>
                 </div>
             )
         })

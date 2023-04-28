@@ -3,18 +3,21 @@ import '../../css/SettingPage/SettingAccount.css'
 
 function SettingAccount(){
     const [buttonState, setButtonState] = useState(false)
-    function onchangepasswordclick(){
-        setButtonState(!buttonState)
-    }
-
+    const [newPassword, setNewPassword] = useState("")
+    const [oldPassword, setOldPassword] = useState("")
+    const [passwordStatus, setPasswordStatus] = useState("")
     const [account, setAccount]  = useState({
         _User__gmail:"",
         _User__password:""
     })
 
+
+    function onchangepasswordclick(){
+        setButtonState(!buttonState)
+    }
+    
     function onAccountChange(event){
         const{name, value} = event.target
-        console.log(name, value)
         setAccount((previousAccount) => {
             return{
                 ...previousAccount,
@@ -32,13 +35,20 @@ function SettingAccount(){
 
     async function onAccountSave(){
         if(
+            oldPassword === account._User__password
+        )
+        setPasswordStatus("Correct Password")
+        else
+        setPasswordStatus("Incorrect Password")
+        if(
             account._User__gmail === "" ||
             account._User__password === ""
         )
         return
         const newAccount = {
             gmail:account._User__gmail,
-            password:account._User__password
+            new_password:newPassword,
+            old_password:oldPassword
         }
         await fetch(`http://127.0.0.1:8000/add_account?user_id=${1}`, {
             method: "PUT",
@@ -68,14 +78,16 @@ function SettingAccount(){
 
                 <div className={`account-detail-block ${buttonState ? "": "hidden"}`} >
                     <p>New Password</p>
-                    <input name="_User__password" onChange={onAccountChange} type="password"/>
+                    <input name="_User__password" onChange={(event)=>{setNewPassword(event.target.value)}} type="password"/>
                     <p className="small-detail"> Minimum 6 characters</p>
                 </div>
 
                 <div className="account-detail-block">
                     <p>Current Password</p>
-                    <input type="password"/>
+                    <input onChange={(event)=>{setOldPassword(event.target.value)}} type="password"/>
                     <p className="small-detail">Enter your current password to save these changes.</p>
+                    <p className={passwordStatus === "Correct Password" ? "showSaved" : "hidden"}>SAVED!</p>
+                    <p className={passwordStatus === "Incorrect Password" ? "showIncorrect" : "hidden"}>INCORRECT PASSWORD</p>
                 </div >
 
                 <div className="account-detail-block">
