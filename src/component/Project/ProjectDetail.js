@@ -17,8 +17,11 @@ const ProjectDetail = ({
             <img src={image} alt="project" />
           </div>
           <div className="right-section">
-            <progress value={(pledgeReceived / pledgeGoal) * 100} max="100">
-              {(pledgeReceived / pledgeGoal) * 100}%
+            {
+            console.log((pledgeReceived))
+            }
+            <progress value={(pledgeReceived / pledgeGoal) * 100 || 0} max="100">
+              {(pledgeReceived / pledgeGoal) * 100 || 0}%
             </progress>
             <div className="detail">
               <div className="pledged-amount">

@@ -11,6 +11,10 @@
   margin-bottom: 20px;
 }
 
+.reward:hover {
+  cursor: pointer;
+}
+
 .selected-reward {
   box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.17);
   transition: all 0.25s ease-in-out;

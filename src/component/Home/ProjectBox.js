@@ -27,7 +27,7 @@ const ProjectBox = ({ project }) => {
       </div>
     );
   }
-
+// c
   return (
     <Link to={`/project/${project.id}`}>
       <div className="project-box">

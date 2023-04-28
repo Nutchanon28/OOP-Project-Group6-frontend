@@ -70,9 +70,9 @@ const PledgeSummary = () => {
         )}
         {project && (
           <>
-            <form className="profileForm" onSubmit={handleSubmit}>
-              <label htmlFor="profileFrom">
-                <h2>Your Pledge</h2>
+            <form className="backForm" onSubmit={handleSubmit}>
+              <label htmlFor="backForm">
+                <p>Your Pledge</p>
               </label>
               {reward && (
                 <div className="selectedPledgeReward">
@@ -91,6 +91,7 @@ const PledgeSummary = () => {
                   min="0"
                 />
               </div>
+              <div className="dividerLine"></div>
               <div className="totalAmount">
                 <p>Total amount</p>
                 <p>
@@ -104,33 +105,37 @@ const PledgeSummary = () => {
                   Baht
                 </p>
               </div>
-              <button type="Submit">Pledge</button>
+              <div className="buttonContainer">
+                <button type="Submit">Pledge</button>
+              </div>
             </form>
           </>
         )}
       </div>
       <div className="paymentMethods">
-        <h2>Payment Methods</h2>
-        {paymentMethods?.map((paymentMethod) => {
-          return (
-            <div
-              className={`paymentMethod ${
-                paymentMethod.id === creditId ? "selectedPaymentMethod" : ""
-              }`}
-              key={paymentMethod.id}
-              onClick={() => setCreditId(paymentMethod.id)}
-            >
-              <p>Card number</p>
-              <p>{paymentMethod._CreditCardTransaction__card_number}</p>
-              <p>Expiration</p>
-              <p>{paymentMethod._CreditCardTransaction__expiration}</p>
-              <p>CVC</p>
-              <p>{paymentMethod._CreditCardTransaction__cvc}</p>
-              <p>Amount</p>
-              <p>{paymentMethod._CreditCardTransaction__money_left}</p>
-            </div>
-          );
-        })}
+        <div className="choosePayment">
+          <h2>Payment Methods</h2>
+          {paymentMethods?.map((paymentMethod) => {
+            return (
+              <div
+                className={`paymentMethod ${
+                  paymentMethod.id === creditId ? "selectedPaymentMethod" : ""
+                }`}
+                key={paymentMethod.id}
+                onClick={() => setCreditId(paymentMethod.id)}
+              >
+                <p>Card number</p>
+                <p>{paymentMethod._CreditCardTransaction__card_number}</p>
+                <p>Expiration</p>
+                <p>{paymentMethod._CreditCardTransaction__expiration}</p>
+                <p>CVC</p>
+                <p>{paymentMethod._CreditCardTransaction__cvc}</p>
+                <p>Amount</p>
+                <p>{paymentMethod._CreditCardTransaction__money_left}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

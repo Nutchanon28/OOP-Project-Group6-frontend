@@ -95,6 +95,10 @@ progress::-webkit-progress-value {
   padding: 10px 0;
 }
 
+.back-button:hover {
+  cursor: pointer;
+}
+
 .operation-section div:last-child {
   font-size: 12px;
 }

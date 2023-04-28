@@ -27,12 +27,24 @@
   margin: 0.5rem 0;
 }
 
+.backForm label p {
+  font-size: 24px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
 .selectedPledgeReward,
 .bonusCost,
 .totalAmount {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.dividerLine {
+  width: 100%;
+  border-top: 2px solid #e6e6e6;
+  margin-top: 20px;
 }
 
 .selectedPledgeReward p:first-child {
@@ -44,6 +56,10 @@
 }
 
 .paymentMethods {
+  background-color: #f6f2eb;
+}
+
+.choosePayment {
   margin: 40px;
 }
 
@@ -53,10 +69,25 @@
   height: 300px;
   padding: 15px 15px;
   border-bottom: 1px solid #dddddd;
+  cursor: pointer;
 }
 
 .selectedPaymentMethod {
   box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.17);
   transition: all 0.25s ease-in-out;
   outline: 0;
+}
+
+.backForm .buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.backForm button {
+  border: none;
+  background-color: #009e74;
+  color: #ffffff;
+  padding: 5px 24px;
+  font-size: 16px;
+  margin-top: 40px;
 }

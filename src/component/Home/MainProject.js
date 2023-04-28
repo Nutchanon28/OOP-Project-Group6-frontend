@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../css/Home/MainProject.css";
 
 const MainProject = ({ featuredProject }) => {
@@ -23,17 +24,19 @@ const MainProject = ({ featuredProject }) => {
 
   return (
     <div className="main-project">
+      <Link to={`project/${featuredProject.id}`}>
       <div className="main-project-container">
         <p>FEATURED PROJECT</p>
         <div className="main-con">
           <img src={featuredProject.image} alt="main project" />
           <div className="main-project-detail">
             <p>{featuredProject.name}</p>
-            <p>{featuredProject.detail}</p>
+            {featuredProject?.detail?.length > 300 ? <p>{featuredProject?.detail.substring(0, 300)}...</p> : <p>{featuredProject?.detail}</p>}
             <p>By {featuredProject.creator}</p>
           </div>
         </div>
       </div>
+    </Link>
     </div>
   );
 };

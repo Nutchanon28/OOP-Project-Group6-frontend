@@ -11,7 +11,7 @@ const RecommendedProject = ({ recommendedProjects }) => {
         <p className="recommended-header">RECOMMENDED FOR YOU</p>
         <div className="recommended-con">
           {recommendedProjects
-            .slice(3 * (currentPage - 1), 3 * currentPage)
+            ?.slice(3 * (currentPage - 1), 3 * currentPage)
             .map((project) => {
               return <ProjectBox project={project} key={project.id} />;
             })}

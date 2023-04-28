@@ -27,7 +27,7 @@ const HomepageFeaturedProject = () => {
         `http://127.0.0.1:8000/view_project/${projectId}`
       );
       setProject(response.data);
-      console.log(response.data.comments);
+      console.log(response.data);
     };
     getProject();
 
