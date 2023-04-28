@@ -1,0 +1,61 @@
+.project-nav * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.project-nav {
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    height: 70px;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.project-nav .container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+ 
+.project-nav .back-button {
+    background-color: #009E74;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.project-nav .bookmark-button {
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    font-size: 14px;
+}
+
+.project-nav-con {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-project {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.about-project p:hover {
+    cursor: pointer;
+}
+
+.project-operation-section {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

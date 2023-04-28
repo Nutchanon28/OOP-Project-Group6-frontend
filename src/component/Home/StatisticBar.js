@@ -1,21 +1,21 @@
 import React from "react";
 import "../../css/Home/StatisticBar.css";
 
-const StatisticBar = () => {
+const StatisticBar = ({ projectsFunded, totalMoney, numberOfPledges}) => {
   return (
     <div className="stat-bar">
       <div className="container">
         <div className="stat-con">
           <div className="stat-box">
-            <p>236,206</p>
+            <p>{projectsFunded}</p>
             <p>projects funded</p>
           </div>
           <div className="stat-box">
-            <p>$7,188,219,854</p>
+            <p>{totalMoney} Baht</p>
             <p>towards creative work</p>
           </div>
           <div className="stat-box">
-            <p>86,584,507</p>
+            <p>{numberOfPledges}</p>
             <p>pledges</p>
           </div>
         </div>
