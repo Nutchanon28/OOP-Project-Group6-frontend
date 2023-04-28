@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Home from "./component/Home/Home";
+import HomepageFeaturedProject from "./component/Project/HomepageFeaturedProject"
+import PledgeSummary from "./component/PledgeSummary/PledgeSummary";
 import StartProject from "./component/StartProjectComponent/StartProject";
 import StartProjectNav from "./component/StartProjectComponent/StartProjectNav";
 import StartProjectHeader from "./component/StartProjectComponent/StartProjectHeader";
@@ -26,6 +28,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="project/:projectId" element={<HomepageFeaturedProject />} />
+            <Route path="backing" element={<PledgeSummary />} />
             <Route path="/start-project/*" element={<StartProjectHeader/>}/>
             <Route path="SettingPage/*" element={<SettingPage />} />
           </Routes>
