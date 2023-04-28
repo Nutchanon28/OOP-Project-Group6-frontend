@@ -9,6 +9,7 @@ import StartProject from "./component/StartProjectComponent/StartProject";
 import StartProjectNav from "./component/StartProjectComponent/StartProjectNav";
 import StartProjectHeader from "./component/StartProjectComponent/StartProjectHeader";
 import CreatedProject from "./component/Home/CreatedProject";
+import SettingPage from "./component/SettingPage/SettingPage";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <div className="App">
       <DataProvider>
           <Routes>
-            <Route path="/" element={<Header />}/>
+            <Route path="/" element={<Home />}/>
             <Route path="/start-project/*" element={<StartProjectHeader/>}/>
             <Route path="/created-project/*" element={<Header />}/>
           </Routes>

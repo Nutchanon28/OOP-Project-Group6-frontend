@@ -1,0 +1,50 @@
+.settingeditprofile{
+    color: #282828;
+}
+
+.settingeditprofile *{
+    margin: 0;
+}
+
+.settingeditprofile-container{
+    width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 180px;
+}
+
+.editprofile-detail-block{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.editprofile-detail-block p:first-child{
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.save-settings{
+    width: 150px;
+    background-color: #2752ff;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 10px 8px;
+}
+
+.save-settings:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+input{
+    padding: 10px;
+    width: 500px;
+    border-width: 0.25px;
+    border-color: #dcdedd;
+    border-radius: 5px
+}
+
+.small-detail{
+    font-size: 13px;
+}
