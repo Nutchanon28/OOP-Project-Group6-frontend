@@ -1,0 +1,78 @@
+.created-project *{
+    margin: 0;
+    box-sizing: border-box;
+    color: #282828;
+}
+
+.created-project {
+    background-color: #F0F0F0
+}
+
+.created-project-container {
+    
+}
+
+.created-project-con {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.created-project-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-top: 42px;
+}
+
+.created-project-menu p {
+    font-size: 14px;
+    padding: 12px 0;
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+.created-project-title {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.created-project-title + div {
+    font-size: 22px;
+    margin-bottom: 60px;
+}
+
+.created-projectt {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.created-project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.created-project-element {
+    height: 110px;
+    background-color: #FFFFFF;
+    border: 1px solid #DCDEDD;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.created-project-status {
+    padding: 12px 18px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 0;
+}
+
+.created-project-image {
+    position: relative;
+    width: 20%;
+    background-color: aquamarine;
+}

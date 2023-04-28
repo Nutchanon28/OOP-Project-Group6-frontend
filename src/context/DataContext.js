@@ -12,6 +12,7 @@ export const DataProvider = ({ children }) => {
     localStorage.getItem("rewardId") || 0
   );
   const [projectPage, setProjectPage] = useState("Campaign");
+
   // const [recommendedProjects, setRecommendedProjects] = useState([]);
 
   // useEffect(() => {

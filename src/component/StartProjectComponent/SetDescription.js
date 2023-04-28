@@ -1,52 +1,59 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../css/StartProjectComponent/SetDescription.css'
-import { AuthContext } from '../../App'
+import DataContext from '../../context/DataContext'
 
 function SetDescription() {
-    const { auth, setAuth } = useContext(AuthContext)
+    const {projectId, setProjectId} = useContext(DataContext)
+    const [project, setProject] = useState({})
     const [description, setDescription] = useState("")
-
-    async function getDescriptionl() {
-        const response = await fetch(`http://127.0.0.1:8000/view_all_project/${auth.currentEditProject.id}`)
-        const responseJson = await response.json()
-        setDescription(responseJson._Project__project_detail)
-    }
+    const [edit, setEdit] = useState(false)
 
     async function onSaveProjectClick() {
-        const newProject = auth.currentEditProject
-        await fetch(`http://127.0.0.1:8000/edit_project/${newProject.id}`, {
+
+        if(!edit) {
+            return
+        }
+
+        setEdit(false)
+
+        const newProject = project
+        await fetch(`http://127.0.0.1:8000/edit_project/${projectId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newProject)
           })
-        console.log(auth.currentEditProject)
+        console.log(newProject)
     }
 
     function onProjectChange(event) {
         const {name, value} = event.target
 
+        setEdit(true)
         setDescription(value)
 
-        setAuth((prevAuth) => {
-            const prevCurrentEditProject = {...prevAuth.currentEditProject}
+        setProject((prevProject) => {
             return {
-                ...prevAuth,
-                currentEditProject: {
-                    ...prevCurrentEditProject,
-                    [name]: value
-                }
+                ...prevProject,
+                [name]: value
             }
         })
-        console.log(auth.currentEditProject)
     }
 
     useEffect(() => {
-        getDescriptionl()
-    }, [])
+        async function getProject() {
+            const response = await fetch(`http://127.0.0.1:8000/view_project/${projectId}`)
+            const responseJson = await response.json()
+            setProject(responseJson.project_detail)
+            console.log(responseJson.project_detail)
+            //setFundingGoal(responseJson._Project__pledge_goal)
+        }
+        getProject()
+        //()
+    }, [projectId])
 
     return (
         <div className='set-description'>
-            <div className='universe' onClick={onSaveProjectClick}>
+            <div className={ edit ? "universe" : "grand" } onClick={onSaveProjectClick}>
                 Save
             </div>
             <div className='set-description-container'>
@@ -69,8 +76,8 @@ function SetDescription() {
                             </div>
                             <textarea 
                                 rows={60}
-                                name='_Project__project_detail'
-                                value={description}
+                                name='detail'
+                                value={project.detail}
                                 onChange={onProjectChange}
                             />
                         </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../../css/StartProjectComponent/StartProject.css'
 import StartProjectNav from './StartProjectNav'
 import AddBasic from './AddBasic'
@@ -8,17 +8,34 @@ import AddReward from './AddReward'
 import SetDescription from './SetDescription'
 import RewardTiers from './RewardTiers'
 import StartProjectHeader from './StartProjectHeader'
-import { Route, Routes } from 'react-router-dom'
-import { AuthContext } from '../../App'
+import { Route, Routes, useParams } from 'react-router-dom'
+import DataContext from '../../context/DataContext'
+import axios from "axios";
 
 function StartProject() {
-    const {auth, setAuth} = useContext(AuthContext);
-
+    const { projectId, setProjectId } = useContext(DataContext);
+    //const { projectId } = useParams()
+    console.log(projectId)
+    
+    useEffect(() => {
+        const getProject = async () => {
+          const response = await axios.get(
+            `http://127.0.0.1:8000/get_last_project`
+          );
+          console.log(response.data);
+          setProjectId(response.data.id);
+        };
+        getProject();
+    
+        console.log("this won't cause infinite loop");
+        console.log(`Your project id is ${projectId}`)
+        //setHasCommented(false);
+      }, [projectId]);
     return (
         <div className='start-project'>
             <div className='start-project-container'>
                 <div className='start-project-con'>
-                    <StartProjectNav />
+                    <StartProjectNav projectId={projectId} setProjectId={setProjectId}/>
                     <Routes>
                         <Route path="" element={<AddBasic />}/>
                         <Route path="set-funding" element={<SetFunding />}/>

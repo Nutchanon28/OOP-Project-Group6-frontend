@@ -1,57 +1,130 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../css/StartProjectComponent/Payment.css'
-import { AuthContext } from '../../App'
+import DataContext from '../../context/DataContext'
+import { AiFillCheckCircle } from "react-icons/ai";
 
 function Payment() {
 
-    const { auth, setAuth } = useContext(AuthContext)
+    const { projectId, setProjectId } = useContext(DataContext)
+    const { userId, setUserId } = useContext(DataContext)
+    const [creditCards, setCreditCards] = useState([])
+    const [paymentIndex, setPaymentIndex] = useState(99)
+    const [payment, setPayment] = useState(null)
 
-    function onValueChange(event) {
-        const { name, value } = event.target;
-        const prevProject = auth.currentEditProject
-        const prevPaymentDetail = prevProject.payment_detail
-        setAuth((prevAuth) => {
-            return {
-                ...prevAuth,
-                currentEditProject: {
-                    ...prevProject,
-                    payment_detail: {
-                        ...prevPaymentDetail,
-                        [name]: value
-                    }
-                }
-            }
-        })
-        console.log(auth.currentEditProject.payment_detail)
+    const [canSubmit, setCanSubmit] = useState(false)
+
+    async function getPayment() {
+        const response = await fetch(`http://127.0.0.1:8000/get_creditcard?user_id=${userId}`)
+        const responseJson = await response.json()
+        setCreditCards(responseJson)
+        console.log(responseJson)
+        const response2 = await fetch(`http://127.0.0.1:8000/get_project_credit_card/${projectId}`)
+        const responseJson2 = await response2.json()
+        setPayment(responseJson2)
+    }
+
+
+    function onCreditCardClick(idx) {
+        setPaymentIndex(idx)
+        setCanSubmit(true)
+        console.log(paymentIndex)
     }
 
     async function onSavePaymentDetailClick() {
-        const tempPaymentDetail = auth.currentEditProject.payment_detail
-        const paymentDetail = {
-            legal_first_name: tempPaymentDetail.legal_first_name, 
-            legal_last_name: tempPaymentDetail.legal_last_name,
-            email_address: tempPaymentDetail.email_address,
-            date_of_birth: tempPaymentDetail.date_of_birth, 
-            home_address: tempPaymentDetail.home_address, 
-            city: tempPaymentDetail.city, 
-            state: tempPaymentDetail.state, 
-            postal_code: tempPaymentDetail.postal_code, 
-            phone_number: tempPaymentDetail.phone_number, 
-            account_number: tempPaymentDetail.account_number, 
-            bank: tempPaymentDetail.bank
-        }
-        await fetch(`http://127.0.0.1:8000/edit_project/${auth.currentEditProject.id}/add_payment_detail`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(paymentDetail)
-        })
 
-        console.log(paymentDetail)
+        if(!canSubmit) {
+            return
+        }
+        const payload = {idx: paymentIndex}
+        setCanSubmit(false)
+        await fetch(`http://127.0.0.1:8000/edit_project/${projectId}/add_credit_card/${userId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        console.log(payload)
+        getPayment()
+        setPaymentIndex(99)
     }
+
+
+    useEffect(() => {
+        getPayment()
+    }, [])
+
+    let projectCreditCardElement = null
+    let myProjectCardElements = null
+    if(!!payment) {
+        projectCreditCardElement = (
+            <div className="saved-paymentmethod-detail-blockk">
+                <p>{payment._CreditCardTransaction__country}</p>
+                <p>{payment._CreditCardTransaction__cvc}</p>
+                <p>{payment._CreditCardTransaction__expiration}</p>
+                <p>{payment._CreditCardTransaction__card_number}</p>
+            </div>
+        )
+    }
+    else {
+        projectCreditCardElement = (
+            <div>Please add your payment methode.</div>
+        )
+    }
+    if(creditCards.length) {
+        myProjectCardElements = creditCards.map((card, idx) => {
+            return (
+                <div key={idx} className="saved-paymentmethod-detail-blockk"
+                    onClick={() => onCreditCardClick(idx)}
+                >
+                    <p>{card._CreditCardTransaction__country}</p>
+                    <p>{card._CreditCardTransaction__cvc}</p>
+                    <p>{card._CreditCardTransaction__expiration}</p>
+                    <p>{card._CreditCardTransaction__card_number}</p>
+                    <div className={paymentIndex == idx ? "is-check" : "hidden"}>
+                        <AiFillCheckCircle />
+                    </div>
+                </div>
+            )
+        })
+    }
+
     return (
         <div className='set-payment'>
             <div className='set-payment-container'>
                 <div className='set-payment-con'>
+                    <div className={ canSubmit ? "universe" : "grand" } onClick={onSavePaymentDetailClick}>
+                        Save
+                    </div>
+                    <div className='payment-header'>
+                        <h1>
+                            Verify your details and link a bank account
+                        </h1>
+                        <p>
+                        Confirm who’s raising funds and receiving them if this project reaches its funding goal. Double-check your<br /> information—you agree the details you provide are true and acknowledge they can’t be changed <br />once submitted.
+                        </p>
+                    </div>
+                    <div className='payment-section'>
+                        <div className='flex-payment'>
+                            <div className='left-element-payment'>
+                                <p>Payment source</p>
+                                <p>Add a Visa, Mastercard, or American Express credit or debit card. Discover, JCB, Maestro, and Visa Electron cards are not accepted.</p>
+                                <p>This card must be registered to the individual or entity (or entity’s owner) raising funds for this project, and in their name.</p>
+                                <p>By adding this card, you agree Kickstarter may charge it for refunds, or in the event of lost chargeback disputes for your project.</p>
+                            </div>
+                            <div className='right-element-payment'>
+                                {projectCreditCardElement}
+                            </div>
+                        </div>
+                        <div className='flex-payment'>
+                            Select your payment method.
+                        </div>
+                        <div className='flex-payment'>
+                            <div className='credit-card-container'>
+                                {myProjectCardElements}
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    {/*
                     <div className='payment-header'>
                         <h1>
                             Verify your details and link a bank account
@@ -74,15 +147,15 @@ function Payment() {
                                         <input 
                                             type='text' 
                                             placeholder='First name'
-                                            name='legal_first_name'
-                                            value={auth.currentEditProject.payment_detail.legal_first_name}
+                                            name='_PaymentDetail__legal_first_name'
+                                            value={payment._PaymentDetail__legal_first_name}
                                             onChange={onValueChange}
                                         />
                                         <input 
                                             type='text' 
                                             placeholder='Last name'
-                                            name='legal_last_name'
-                                            value={auth.currentEditProject.payment_detail.legal_last_name}
+                                            name='_PaymentDetail__legal_last_name'
+                                            value={payment._PaymentDetail__legal_last_name}
                                             onChange={onValueChange}
                                         />
                                     </div>
@@ -91,8 +164,8 @@ function Payment() {
                                         <input 
                                             type='text' 
                                             placeholder='you@example.com'
-                                            name='email_address'
-                                            value={auth.currentEditProject.payment_detail.email_address}
+                                            name='_PaymentDetail__email_address'
+                                            value={payment._PaymentDetail__email_address}
                                             onChange={onValueChange}
                                         />
                                     </div>
@@ -101,8 +174,8 @@ function Payment() {
                                         <input 
                                             type='date' 
                                             max={new Date().toISOString().split('T')[0]} 
-                                            name='date_of_birth'
-                                            value={auth.currentEditProject.payment_detail.date_of_birth}
+                                            name='_PaymentDetail__date_of_birth'
+                                            value={payment._PaymentDetail__date_of_birth}
                                             onChange={onValueChange}
                                         />
                                     </div>
@@ -111,35 +184,41 @@ function Payment() {
                                         <input 
                                             type='text' 
                                             placeholder='Address'
-                                            name='home_address'
-                                            value={auth.currentEditProject.payment_detail.home_address}
+                                            name='_PaymentDetail__home_address'
+                                            value={payment._PaymentDetail__home_address}
                                             onChange={onValueChange}
                                         />
                                         <input 
                                             type='text' 
                                             placeholder='City'
-                                            name='city'
-                                            value={auth.currentEditProject.payment_detail.city}
+                                            name='_PaymentDetail__city'
+                                            value={payment._PaymentDetail__city}
                                             onChange={onValueChange}
                                         />
                                         <select 
                                             placeholder='State'
-                                            name='state'
-                                            value={auth.currentEditProject.payment_detail.state}
+                                            name='_PaymentDetail__state'
+                                            value={payment._PaymentDetail__state}
                                             onChange={onValueChange}
                                         >
                                             <option>BANYANG</option>
                                             <option>NEWORLENE</option>
                                             <option>FLORIDA</option>
                                         </select>
-                                        <input type='text' placeholder='Postal code'/>
+                                        <input 
+                                            type='text' 
+                                            placeholder='Postal code'
+                                            name="_PaymentDetail__postal_code"
+                                            value={payment._PaymentDetail__postal_code}
+                                            onChange={onValueChange}
+                                        />
                                     </div>
                                     <div className='title-payment'>
                                         <p>Phone number</p>
                                         <input 
                                             type='text'
-                                            name='phone_number'
-                                            value={auth.currentEditProject.payment_detail.phone_number}
+                                            name='_PaymentDetail__phone_number'
+                                            value={payment._PaymentDetail__phone_number}
                                             onChange={onValueChange}
                                         />
                                     </div>  
@@ -159,8 +238,8 @@ function Payment() {
                                 <div className='title-payment'>
                                     <p>Bank</p>
                                     <select
-                                        name='bank'
-                                        value={auth.currentEditProject.payment_detail.bank}
+                                        name='_PaymentDetail__bank'
+                                        value={payment._PaymentDetail__bank}
                                         onChange={onValueChange}
                                     >
                                        <option>BANGKOK BANK</option>
@@ -176,8 +255,8 @@ function Payment() {
                                     <p>Account number</p>
                                     <input 
                                         type='text'
-                                        name='account_number'
-                                        value={auth.currentEditProject.payment_detail.account_number}
+                                        name='_PaymentDetail__account_number'
+                                        value={payment._PaymentDetail__account_number}
                                         onChange={onValueChange}
                                     />
                                 </div>
@@ -185,13 +264,13 @@ function Payment() {
                         </div>
                     </div>
                     <div className='section-add-reward'>
-                        <div className='save-reward-button width50' onClick={onSavePaymentDetailClick}>
+                        <div className={canSubmit ? 'save-reward-button width50' : 'save-reward-grand width50'} onClick={onSavePaymentDetailClick}>
                             Save payment detail
                         </div>
                         <div className='cancel-reward-button'>
                             Cancel
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         </div>

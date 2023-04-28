@@ -83,10 +83,24 @@
     background-color: #028858;
     color: #FFFFFF;
     text-align: center;
-    width: 120px;
+    width: 192px;
     z-index: 100;
 }
 
 .universe:hover {
     background-color: #015738;
+}
+
+.grand {
+    position: fixed;
+    top: 15.3px;
+    right: 34.5px;
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    width: 192px;
+    z-index: 100;
+    opacity: 0.5;
 }

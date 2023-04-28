@@ -9,22 +9,17 @@ import HomepageFeaturedProject from "./component/Project/HomepageFeaturedProject
 import PledgeSummary from "./component/PledgeSummary/PledgeSummary";
 import StartProject from "./component/StartProjectComponent/StartProject";
 import StartProjectHeader from "./component/StartProjectComponent/StartProjectHeader";
+import CreatedProject from "./component/Home/CreatedProject";
 import SettingPage from "./component/SettingPage/SettingPage";
 import Layout from "./component/Layout";
 import ProjectCreatingLayout from "./component/ProjectCreatingLayout"
 
-const AuthContext = React.createContext();
 
 function App() {
-  const [auth, setAuth] = useState({
-    id: 1,
-    currentEditProject: null,
-  });
 
   return (
     <div className="App">
       <DataProvider>
-        <AuthContext.Provider value={{ auth, setAuth }}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
@@ -34,15 +29,15 @@ function App() {
               />
               <Route path="backing" element={<PledgeSummary />} />
               <Route path="setting/*" element={<SettingPage />} />
+              <Route path="/created-project/*" element={<CreatedProject />} />
             </Route>
             <Route path="/start-project/*" element={<ProjectCreatingLayout />} >
             <Route index element={<StartProject />} />
             </Route>
           </Routes>
-        </AuthContext.Provider>
       </DataProvider>
     </div>
   );
 }
-export { AuthContext };
+
 export default App;

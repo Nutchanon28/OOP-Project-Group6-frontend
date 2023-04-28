@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/StartProjectComponent/StartProjectNav.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
+import axios from "axios";
 
-function StartProjectNav() {
 
-    const [decoration, setDecoration] = useState(1)
+
+function StartProjectNav(props) {
+
+    const { projectId, setProjectId } = props
 
     function getNavClass(navLinkProps) {
         let navClass = 'app-header-item';
         if (navLinkProps.isActive) navClass += ' app-header-item-active';
         return navClass;
       }
+
+    useEffect(() => {
+        const getProject = async () => {
+          const response = await axios.get(
+            `http://127.0.0.1:8000/get_last_project`
+          );
+          console.log(response.data);
+          setProjectId(response.data.id);
+        };
+        getProject();
+    
+        console.log("this won't cause infinite loop");
+        //setHasCommented(false);
+      }, [projectId]);
 
     return (
         <div className='start-project-nav'>
@@ -19,7 +36,7 @@ function StartProjectNav() {
                     <NavLink className={getNavClass} to="">
                         <li><p>✍️</p>Basics</li>
                     </NavLink>
-                    <NavLink className={getNavClass} to="set-funding">
+                    <NavLink className={getNavClass} to={`set-funding`}>
                         <li><p>📊</p>Funding</li>
                     </NavLink >
                     <NavLink className={getNavClass} to="reward-tiers">
