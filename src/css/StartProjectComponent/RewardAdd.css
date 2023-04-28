@@ -6,11 +6,11 @@
 }
 
 .reward-add {
+    position: sticky;
+    top: 100px;
     border: 1px solid #dad7d4;
     padding: 24px;
     align-self: flex-start;
-    position: sticky;
-    top: 30px;
 }
 
 .font10 {

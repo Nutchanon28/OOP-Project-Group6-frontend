@@ -1,65 +1,113 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../css/StartProjectComponent/AddBasic.css'
-import { AuthContext } from '../../App'
+import DataContext from '../../context/DataContext';
+import axios from "axios";
+import styled from 'styled-components';
+
+const Image = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: url(${props => props.url});
+    background-size: cover;
+`
 
 function AddBasic() {
 
-    const {auth, setAuth} = useContext(AuthContext);
-    const [project, setProject] = useState(null)
+    const { projectId, setProjectId } = useContext(DataContext);
 
-    async function getEditProject() {
-        console.log(auth.currentEditProject)
-        const lastProject = await fetch("http://127.0.0.1:8000/get_last_project")
-        const lastProjectJson = await lastProject.json()
-        setProject(lastProjectJson)  
-    }
+    const [project, setProject] = useState({}) 
+    const [focus, setFocus] = useState(99)
+    const [edit, setEdit] = useState(false)
+
+    const getProject = async () => {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/get_last_project`
+        );
+        setProject(response.data.detail.project_detail);
+        console.log(response.data.detail.project_detail);
+      };
 
     async function onSaveProjectClick() {
-        const newProject = auth.currentEditProject
-        await fetch(`http://127.0.0.1:8000/edit_project/${newProject.id}`, {
+        if(!edit) {
+            return
+        }
+
+        setEdit(false)
+
+        if(project.project_duration == "") {
+            project.project_duration = 1
+        }
+        else if(project.name == "") {
+            project.name = project.category + " Project"
+        }
+        await fetch(`http://127.0.0.1:8000/edit_project/${projectId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newProject)
+            body: JSON.stringify(project)
           })
-        console.log(auth.currentEditProject)
+          getProject()
+        console.log(project)
     }
 
     function onProjectChange(event) {
-        const {name, value} = event.target
+        let {name, value} = event.target      
+
+        if(name == "name") {
+            if(value.length > 60) {
+                value = value.substring(0, 60)
+            }
+        }
+        else if(name == "project_duration") {
+            if(value.length == 0) {
+                
+            }
+            else if(value[value.length - 1] < "0" || value[value.length - 1] > "9" || value == "0") {
+                return
+            }
+            else {
+                value = parseInt(value)
+                if(value > 60) {
+                    value = "60"
+                }
+                else{
+                    value = value.toString()
+                }
+            }
+        }
+        setEdit(true)
         setProject((prevProject) => {
             return {
                 ...prevProject,
                 [name]: value
             }
         })
-        setAuth((prevAuth) => {
-            const prevCurrentEditProject = prevAuth.currentEditProject
-            return {
-                ...prevAuth,
-                currentEditProject: {
-                    ...prevCurrentEditProject,
-                    [name]: value
-                }
-            }
-        })
-        console.log(auth.currentEditProject)
+        console.log(project)
     }
 
     useEffect(() => {
-        getEditProject()
-        //console.log(project)
-    }, [])
+        getProject();
+        console.log("this won't cause infinite loop");
+    }, [projectId]);
 
     let temp = null
-    let projectImage = null
+    let projectImageElement = null
     if(!!project)
-        // if(project._Project__image){
-        //     projectImage = (
-        //         <img src={project._Project__image.current}/>
-        //     )
-        // }
+        if(project.image){
+            projectImageElement = 
+            <div className='image-border'>
+                <Image url={project.image}>
+                </Image>
+            </div>            
+        }
         temp = (
             <div className='add-basic'>
+                <div className={ edit ? "universe" : "grand" } onClick={onSaveProjectClick}>
+                    Save
+                </div>
                 <div className='add-basic-container'>
                     <div className='add-basic-con'>
                         <div className='basic-header'>
@@ -82,10 +130,15 @@ function AddBasic() {
                                         <p>Title</p>
                                         <input 
                                             type='text'
-                                            name='_Project__project_name'
-                                            value={project._Project__project_name}
+                                            name='name'
+                                            value={project.name}
                                             onChange={onProjectChange}
+                                            onFocus={() => setFocus(0)}
+                                            onBlur={() => setFocus(99)}
                                         />
+                                        <div className='under-text side-right'>
+                                            {focus == 0 ? `${project.name.length}/60` : ""}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +154,8 @@ function AddBasic() {
                                     <div className='category-basic'>
                                         <p>Categogy</p>
                                         <select
-                                            name='_Project__category'
-                                            value={project._Project__category}
+                                            name='category'
+                                            value={project.category}
                                             onChange={onProjectChange}
                                         >
                                             <option>Art</option>
@@ -136,12 +189,12 @@ function AddBasic() {
                                     <div className='image-basic'>
                                         <p>Project image</p>
                                         <input 
-                                            type='file'
-                                            name="_Project__project_image"
-                                            value={project._Project__image} 
+                                            type='text'
+                                            name="image"
+                                            value={project.image} 
                                             onChange={onProjectChange}
                                         />
-                                        {projectImage}
+                                        {projectImageElement}
                                     </div>
                                 </div>
                             </div>
@@ -156,11 +209,16 @@ function AddBasic() {
                                     <div className='duration-basic'>
                                         <p>Enter number of days</p>
                                         <input 
-                                            type='number'
-                                            name='_Project__project_duration'
-                                            value={project._Project__project_duration}
+                                            type='text'
+                                            name='project_duration'
+                                            value={project.project_duration}
                                             onChange={onProjectChange}
+                                            onFocus={() => setFocus(1)}
+                                            onBlur={() => setFocus(99)}
                                         />
+                                        <div className='under-text'> 
+                                            {focus == 1 ? `Days for funding duration must be between 1 and 60` : ""}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -173,9 +231,6 @@ function AddBasic() {
 
     return (
         <div>
-            <div className='universe' onClick={onSaveProjectClick}>
-                Save
-            </div>
             {temp}
         </div>
         

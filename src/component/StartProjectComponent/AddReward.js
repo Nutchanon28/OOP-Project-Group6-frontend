@@ -1,15 +1,18 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import '../../css/StartProjectComponent/AddReward.css'
 import RewardAdd from './RewardAdd';
 import { HiColorSwatch } from 'react-icons/hi';
-import { AuthContext } from '../../App';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import DataContext from '../../context/DataContext';
+import axios from 'axios';
 
 function AddReward() {
-    const {auth, setAuth} = useContext(AuthContext)
+    const {projectId, setProjectId} = useContext(DataContext)
+    const {rewardId, setRewardId} = useContext(DataContext)
+    const [project, setProject] = useState({})
     const [rewardInfo, setRewardInfo] = useState({
        name: '', amount: 1, description: '', month: 'January',
-       year: '2023', quantity: 1  
+       year: '2023', quantity: 1, ships_to: "Bangkok"  
     })
     const [rewardInclude, setRewardInclude] = useState({
         name:'', quantity: 1
@@ -18,9 +21,27 @@ function AddReward() {
 
     const [buttonStatus, setButtonStatus] = useState([true, false]);
     const [addItemStatus, setAddItemStatus] = useState(false);
+    const [shipings, setShippings] = useState([])
+    const [focus, setFocus] = useState(99)
+    const navigate = useNavigate()
+    const theDate = new Date()
 
     function onRewardInfoValueChange(event) {
-        const {name, value} = event.target;
+        let {name, value} = event.target;
+        if(name == "amount") {
+            if(value < 1) value = 1
+            else if(value > 10000) value = 10000
+        }
+        else if(name == "name") {
+            if(value.length > 30) {
+                value = value.substring(0, 30)
+            }
+        }
+        else if(name == "description") {
+            if(value.length > 1000) {
+                value = value.substring(0, 1000)
+            }
+        }
         setRewardInfo((prevInfo) => {
             return {
                 ...prevInfo,
@@ -30,8 +51,13 @@ function AddReward() {
     }
 
     function onRewardIncludeChange(event) {
-        const {name, value} = event.target;
+        let {name, value} = event.target;
         console.log(name, value)
+        if(name == "name") {
+            if(value.length > 30) {
+                value = value.substring(0, 30)
+            }
+        }
         setRewardInclude((prevInclude) => {
             return {
                 ...prevInclude,
@@ -55,6 +81,8 @@ function AddReward() {
     }
 
     function setIncludeQuantity(theId, quantity) {
+        if(quantity < 1) quantity = 1;
+        else if(quantity > 100) quantity = 100;
         setRewardIncludes((prevIncludes) => {
             return prevIncludes.map((include) => {
                 if(include.id == theId) {
@@ -75,24 +103,55 @@ function AddReward() {
 
 
     async function onSaveRewardClick() {
-        const newReward = {
+        function  month2Int(month) {
+            const mem = {
+                January: 0,
+                February: 1,
+                March: 2,
+                April: 3,
+                May: 4,
+                June: 5,
+                July: 6,
+                August: 7,
+                September: 8,
+                October: 9,
+                November: 10,
+                December: 11
+            }
+            return mem[[month]];
+        }
+
+        const currentDate = new Date()
+
+        if(rewardInfo.year < currentDate.getFullYear()){
+            return
+        }
+        else if(rewardInfo.year == currentDate.getFullYear() && month2Int(rewardInfo.month) <= currentDate.getMonth()) {
+            console.log("Invalid Month")
+            return
+        }
+        let newReward = {
             _PledgeReward__reward_goal: rewardInfo.amount,
             _PledgeReward__reward_name: rewardInfo.name,
             _PledgeReward__reward_detail: rewardInfo.description,
             _PledgeReward__reward_include: rewardIncludes,
             _PledgeReward__reward_backers: 0,
-            _PledgeReward__max_reward_backers: rewardInfo.quantity,
+            _PledgeReward__reward_left: rewardInfo.quantity,
             _RewardShipping__estimated_delivery: {month: rewardInfo.month, year: rewardInfo.year},
-            _RewardShipping__ships_to: "Universe", 
+            _RewardShipping__ships_to: rewardInfo.ships_to, 
             _RewardShipping__address: "", 
             _RewardShipping__shipping_cost: 99
         }
-        await fetch(`http://127.0.0.1:8000/edit_project/${auth.currentEditProject.id}/add_pledge_reward/${auth.currentRewardId}`, {
+        if(newReward._PledgeReward__reward_name == "") {
+            newReward._PledgeReward__reward_name = `Reward ${rewardId}`
+        }
+        await fetch(`http://127.0.0.1:8000/edit_project/${projectId}/add_pledge_reward/${rewardId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newReward)
           })
         console.log(JSON.stringify(newReward))
+        navigate('../reward-tiers')
     }
 
     function toggle(index) {
@@ -117,11 +176,29 @@ function AddReward() {
         }
         setAddItemStatus(!addItemStatus)
     }
+
+    function cancelClick() {
+        setAddItemStatus(false)
+        setRewardInclude({
+            name:'', 
+            quantity: 1
+        })
+    }
     const tmp = (
         <div className='inner-button'>
             
         </div>
     );
+
+    useEffect(() => {
+        async function getProject() {
+            const response = await axios.get(`http://127.0.0.1:8000/view_project/${projectId}`)
+            const data = await response.data
+            setProject(data.project_detail)
+        }
+
+        getProject()
+    }, [])
 
     const includePreviewElements = rewardIncludes.map((include) => {
         return (
@@ -145,6 +222,10 @@ function AddReward() {
             </div>
         );
     })
+
+    useEffect(() => {
+        console.log(`Your reward id is ${rewardId}`)
+    }, [rewardId])
 
 
     const dropdown = (
@@ -174,7 +255,12 @@ function AddReward() {
                                     name="name"
                                     value={rewardInfo.name} 
                                     onChange={onRewardInfoValueChange} 
+                                    onFocus={() => setFocus(0)}
+                                    onBlur={() => setFocus(99)}
                                 />
+                                <div className='under-text side-right'>
+                                    {focus == 0 ? `${rewardInfo.name.length}/30` : ""}
+                                </div>
                             </div>
                             <div className='section-add-reward'>
                                 <p>Amount</p>
@@ -183,7 +269,12 @@ function AddReward() {
                                     name='amount'
                                     value={rewardInfo.amount} 
                                     onChange={onRewardInfoValueChange}
+                                    onFocus={() => setFocus(1)}
+                                    onBlur={() => setFocus(99)}
                                 />
+                                <div className='under-text'>
+                                    {focus == 1 ? "Enter a value between $1 and $10,000." : ""}
+                                </div>
                             </div>
                             <div className='section-add-reward'>
                                 <p>Description</p>
@@ -194,7 +285,12 @@ function AddReward() {
                                     name='description'
                                     value={rewardInfo.description}
                                     onChange={onRewardInfoValueChange} 
+                                    onFocus={() => setFocus(2)}
+                                    onBlur={() => setFocus(99)}
                                 />
+                                <div className='under-text side-right'>
+                                    {focus == 2 ? `${rewardInfo.description.length}/1000` : ""}
+                                </div>
                             </div>
                             <div className='section-add-reward'>
                                 <p>Items</p>
@@ -213,13 +309,30 @@ function AddReward() {
                                         name='name'
                                         value={rewardInclude.name}
                                         onChange={onRewardIncludeChange}
+                                        onFocus={() => setFocus(3)}
+                                        onBlur={() => setFocus(99)}
                                     />
+                                    <div className='under-text side-right '>
+                                        {focus == 3 ? `${rewardInclude.name.length}/30` : ""}
+                                    </div>
                                     <div onClick={addItemClick}>
                                         Save
                                     </div>
-                                    <div>
+                                    <div onClick={cancelClick}>
                                         Cancel
                                     </div>
+                                </div>
+                            </div>
+                            <div className='section-add-reward'>
+                                <p>Shipping</p>
+                                <select
+                                    placeholder='Bangkok'
+                                >
+                                    <option>Bangkok</option>
+                                    <option>Phuket</option>
+                                </select>
+                                <div className='add-shipping-button'>
+                                    Add shipping
                                 </div>
                             </div>
                             <div className='section-add-reward'>
@@ -251,11 +364,11 @@ function AddReward() {
                                         value={rewardInfo.year}
                                         onChange={onRewardInfoValueChange}
                                     >
-                                        <option>2023</option>
-                                        <option>2024</option>
-                                        <option>2025</option>
-                                        <option>2026</option>
-                                        <option>2027</option>
+                                        <option>{theDate.getFullYear()}</option>
+                                        <option>{theDate.getFullYear() + 1}</option>
+                                        <option>{theDate.getFullYear() + 2}</option>
+                                        <option>{theDate.getFullYear() + 3}</option>
+                                        <option>{theDate.getFullYear() + 4}</option>
                                     </select>
                                 </div> 
                             </div>
@@ -286,11 +399,11 @@ function AddReward() {
                                 </div>
                             </div>
                             <div className='section-add-reward'>
-                                <Link to='../reward-tiers'>
+                                
                                     <div className='save-reward-button' onClick={onSaveRewardClick}>
                                         Save reward
                                     </div>
-                                </Link>
+                                
                                 <div className='cancel-reward-button'>
                                     Cancel
                                 </div>

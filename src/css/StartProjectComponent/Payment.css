@@ -103,3 +103,45 @@
     margin: 0 auto;
 }
 
+.save-reward-grand {
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.credit-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.saved-paymentmethod-detail-blockk{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 93px;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #dcdedd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.saved-paymentmethod-detail-blockk:hover {
+    box-shadow: 0 3px 6px 1px rgba(0,0,0,0.17);
+    transition: all 0.25s ease-in-out;
+    outline: 0;
+}
+
+.is-check {
+    position: absolute;
+    color: #028858;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+}
+
+
+

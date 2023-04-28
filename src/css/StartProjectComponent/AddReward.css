@@ -86,6 +86,7 @@
     font-size: 16px;
     border-bottom: 1px solid #DCDEDD;
     padding: 42.4px 0 65px;
+    position: relative;
 }
 
 .section-add-reward:first-child {
@@ -141,6 +142,7 @@
     padding: 24px;
     border: 1px solid #DCDEDD;
     margin-top: 12px;
+    position: relative;
 }
 
 .add-include  div {
@@ -150,14 +152,21 @@
     color: #656969;
 }
 
-
-.add-include div:nth-child(3) {
-    color: #FFFFFF;
-    background-color: #464646;
-    margin-top: 18px;
+.add-include  div:nth-child(3) {
+    padding: 0;
+    font-size: 13px;
+    margin-top: 10px;
+    color: #015738;
 }
 
-.add-include div:nth-child(3):hover {
+
+.add-include div:nth-child(4) {
+    color: #FFFFFF;
+    background-color: #464646;
+    margin-top: 30px;
+}
+
+.add-include div:nth-child(4):hover {
     background-color: #000000;
 }
 
@@ -280,5 +289,31 @@
     color: #282828;
 }
 
+.the-reward-add {
+    position: sticky;
+    top: 100px;
+}
+
+.under-text {
+    font-size: 13px;
+    margin-top: 10px;
+    color: #015738;
+}
+
+.side-right {
+    right: 25px;
+}
+
+.add-shipping-button {
+    color: #FFFFFF;
+    background-color: #464646;
+    margin-top: 30px;
+    width: 40%;
+    margin-left: auto ;
+    margin-right: auto;
+    padding: 10.5px 18px;
+    font-size: 14px;
+    text-align: center;
+}
 
 

@@ -3,16 +3,18 @@ import "../css/Header.css";
 import { Link } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
-import { AuthContext } from "../App";
+import DataContext from "../context/DataContext";
 
 const Header = () => {
 
-    const {auth, setAuth} = useContext(AuthContext)
+    const { projectId, setProjectId } = useContext(DataContext)
+    const { userId, setUserId } = useContext(DataContext)
     const [profileClick, setProfileCLick] = useState(false)
     const [myProject, setMyProject] = useState([])
+    const [newProjectId, setNewProjectId] = useState(1)
 
     async function getMyProject() {
-        const response = await fetch(`http://127.0.0.1:8000/view_my_project/${auth.id}`)
+        const response = await fetch(`http://127.0.0.1:8000/view_my_project/${userId}`)
         const responseJson = await response.json()
         setMyProject(responseJson)
     }
@@ -23,14 +25,14 @@ const Header = () => {
 
     async function onStartProjectCLick() {
         const newProject = { 
-            project_name: "", 
+            project_name: `Project${Date.now().toString()}`, 
             category: "Art", 
             project_image: "image", 
             project_duration: 1, 
             project_detail: "",
             pledge_goal: 1,
             pledge_reward: [], 
-            creator_id: auth.id,
+            creator_id: userId,
             payment_detail: {
                 legal_first_name: "",
                 legal_last_name: "", 
@@ -53,35 +55,10 @@ const Header = () => {
 
         const response = await fetch(`http://127.0.0.1:8000/get_last_project`)
         const responseJson = await response.json()
-        const responseJson2 = {
-            ...responseJson,
-            payment_detail: {
-                legal_first_name: "",
-                legal_last_name: "", 
-                email_address: "",
-                date_of_birth: "", 
-                home_address: "", 
-                city: "", 
-                state: "", 
-                postal_code: "", 
-                phone_number: "", 
-                account_number: "", 
-                bank: ""
-            }
-        }
-        console.log(responseJson2)
-        setAuth((prevAuth) => {
-            return {
-                ...prevAuth,
-                currentEditProject: responseJson2
-            }
-        })
-        // setAuth((prevAuth) => {
-        //         return {
-        //             ...prevAuth,
-        //             currentEditProject: newProject
-        //         }
-        //   })
+        setNewProjectId(responseJson.id)
+        console.log(responseJson)
+        setProjectId(responseJson.id)
+        console.log(`Your project id is ${responseJson.id}`)
     }
 
     useEffect(() => {
@@ -104,7 +81,7 @@ const Header = () => {
                 <div className='header-con'>
                     <ul className='left-menu'>
                         <li><a href="#">Discover</a></li>
-                        <li onClick={onStartProjectCLick}><Link to="/start-project">Start a project</Link></li>
+                        <li onClick={onStartProjectCLick}><Link to={"start-project"}>Start a project</Link></li>
                     </ul>
                     <div className='logo'>
                     <Link to=""><h2>KICKSTARTER</h2></Link>
@@ -125,6 +102,7 @@ const Header = () => {
                 <div className="section-menu-tab">
                     <p>CREATED PROJECTS</p>
                     {myProjectElements}
+                    <Link to="created-project"><p>view all</p></Link>
                 </div>
             </div>
         </div>
