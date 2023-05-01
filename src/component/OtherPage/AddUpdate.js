@@ -8,6 +8,25 @@ function AddUpdate() {
   const [body ,setBody] = useState("")
   const [defaultLayout, setDefaultLayout] = useState(true);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("you have entered")
+    // if (defaultLayout === true){
+    //   input = {
+    //     "";
+    //   }
+    //   const response= await fetch(
+    //     `http://127.0.0.1:8000/add_update?input=${input}`
+    //   )
+    // }
+    // const response= await fetch(
+    //   `http://127.0.0.1:8000/add_update?keyword=${keyword}&category=${category}`
+    // )
+    // const responseJson = await response.json()
+    // setSearchedProjects(responseJson)
+    // console.log(responseJson);
+  }
+
     return (
       <div className="addUpdate">
         <div className="addUpdate-container">
@@ -39,6 +58,8 @@ function AddUpdate() {
                     <input className="box1" type="text" id = "title" value = {title} placeholder="Title" onChange={(e) => setTitle(e.target.value)}/>
                     <p>Body</p>
                     <input className="box2" type="text" id = "body" value = {body} placeholder="Detail" onChange={(e) => setBody(e.target.value)}/>
+                    <p>Image</p>
+                    <input className="box3" type="text" id = "image" value = {body} placeholder="ImageLink" onChange={(e) => setBody(e.target.value)}/>
                     <div className="footer">
                       <div className="button">Delete draft</div>
                       <div className="button">Publish</div> 
@@ -51,14 +72,14 @@ function AddUpdate() {
               <div className="QnA">
                 {!defaultLayout && (
                   <>
-                  <form className="detail" action="/action_page.php">
+                  <form className="detail" onSubmit={handleSubmit}>
                     <p>Question</p>
-                    <input className="box1" type="text" id = "title" value = {title} placeholder="Title" onChange={(e) => setTitle(e.target.value)}/>
+                    <input className="box1" type="text" id = "title" value = {title} placeholder="Question" onChange={(e) => setTitle(e.target.value)}/>
                     <p>Answer</p>
-                    <input className="box2" type="text" id = "body" value = {body} placeholder="Detail" onChange={(e) => setBody(e.target.value)}/>
+                    <input className="box2" type="text" id = "body" value = {body} placeholder="Answer" onChange={(e) => setBody(e.target.value)}/>
                     <div className="footer">
                       <div className="button">Delete draft</div>
-                      <div className="button">Publish</div> 
+                      <input className="button" type="submit" placeholder="Publish"/>
                       {/* if u click "Publish" it will call app.post add_update function from api*/}
                     </div>
                   </form>
