@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import "../../css/Project/ProjectCampaign.css";
 import "../../css/Project/Reward.css";
-import { BiUserCircle } from "react-icons/bi";
 import Reward from "./Reward";
 import DataContext from "../../context/DataContext";
 import axios from "axios";
@@ -53,12 +52,18 @@ const ProjectCampaign = ({
               </div>
               <div className="right-menu">
                 <div className="project-creator">
-                  <BiUserCircle className="user-icon" />
-                  {/* <img src="https://fakeimg.pl/300/" alt="test" /> */}
+                  <img src={creator?.avatar} alt="profile" />
                   {creator ? (
                     <>
                       <p className="creator-name">{creator.name}</p>
-                      <p className="creator-bio">{creator.biography}</p>
+                      <p className="creator-bio">
+                        {creator.biography.length > 100
+                          ? creator.biography.substring(0, 100) + "..."
+                          : creator.biography}
+                      </p>
+                      <a>
+                        <p className="creator-website">{creator.website}</p>
+                      </a>
                     </>
                   ) : (
                     <p>loading</p>
@@ -79,6 +84,9 @@ const ProjectCampaign = ({
                         <div className="reward-con">
                           <div className="reward-cost">
                             Pledge without a reward
+                          </div>
+                          <div className="reward-description">
+                            because you believe in it.
                           </div>
                         </div>
                       </div>

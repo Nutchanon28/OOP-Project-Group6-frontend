@@ -9,6 +9,7 @@
   border: 1px solid #dcdedd;
   margin: auto;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .reward:hover {
@@ -53,6 +54,10 @@
 .reward-include p:first-child {
   font-size: 10px;
   color: #656969;
+}
+
+.reward-include ul {
+  margin-top: 5px;
 }
 
 .reward-delivery {
