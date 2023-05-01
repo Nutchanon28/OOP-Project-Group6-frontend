@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../../css/OtherPage/ViewProfile.css";
 import "../../css/OtherPage/About.css";
@@ -12,23 +13,17 @@ function ViewProfile() {
   const [aboutClick, setAboutClick] = useState(true);
   const {userId} = useContext(DataContext)
   const [user, setUser] = useState()
-  
-  const [showUnderline1 , setShowUnderline1] = useState(true)
-  const [showUnderline2 , setShowUnderline2] = useState(false)
 
   useEffect(() => {
     const getUser = async () => {
       const response = await axios.get(
-        `http://127.0.0.1:8000/view_user?user_id=${userId}`
+        `http://127.0.0.1:8000/view_user?userId=${userId}`
       );
       console.log(response);
       setUser(response.data)
     };
     getUser();
-  }, [userId]);
 
-
-  useEffect(() => {
     const getProjects = async () => {
       const response = await axios.get(
         `http://127.0.0.1:8000/view_backed_project?user_id=${userId}`
@@ -39,28 +34,21 @@ function ViewProfile() {
     getProjects();
   }, [userId]);
 
-
   return (
     <div className="profile">
       <div className="profile-container">
         <div className="profile-con">
           <div className="display-profile">
             <>
-              {/* {user?.map((user) =>{
-                return (
-                  <> */}
-                    <div className="manage-privacy">
-                      <p className="privacy-status">
-                        This profile page is only visible to you.
-                      </p>
-                      <p className="manage">Manage your privacy settings</p>
-                    </div>
-                    <img className="avatar" src={user.avatar}></img>
-                    <p className="username">{user.name}</p>
-                    <p className="short-info">Backed {backedProjects.length} projects</p>
-                  {/* </>
-                )
-              })} */}
+              <div className="manage-privacy">
+                <p className="privacy-status">
+                  This profile page is only visible to you.
+                </p>
+                <Link to = "../setting/settingeditprofile"><p className="manage">Manage your privacy settings</p></Link>
+              </div>
+              <img className="avatar" src={user?.avatar}></img>
+              <p className="username">{user?.name}</p>
+              <p className="short-info">Backed {backedProjects.length} projects</p>
             </>
           </div>
 

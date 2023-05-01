@@ -99,9 +99,9 @@ const Header = () => {
           </div>
           <ul className="right-menu">
             <li>
-              <a href="#">
+              <Link to = "other/search_result">
                 Search <HiSearch className="search-icon" />
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#">
@@ -118,7 +118,7 @@ const Header = () => {
         <div className="section-menu-tab">
           <p>YOUR ACCOUNT</p>
           <p>
-            <Link to="profile">Profile</Link>
+            <Link to="/other/view_profile">Profile</Link>
           </p>
           <p>
             <Link to="setting">Settings</Link>
