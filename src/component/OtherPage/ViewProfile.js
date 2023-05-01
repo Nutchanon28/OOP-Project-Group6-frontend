@@ -44,7 +44,7 @@ function ViewProfile() {
                 <p className="privacy-status">
                   This profile page is only visible to you.
                 </p>
-                <Link to = "../setting/settingeditprofile"><p className="manage">Manage your privacy settings</p></Link>
+                <Link to = "..//setting/settingeditprofile" className="manage">Manage your privacy settings</Link>
               </div>
               <img className="avatar" src={user?.avatar}></img>
               <p className="username">{user?.name}</p>
@@ -64,17 +64,13 @@ function ViewProfile() {
               <>
                 <div className="part-info">
                   <p className="part-head">Biography</p>
-                  <p className="part-description">
-                    this is my biography that i didnt write it
-                  </p>
-                  <p className="edit-description">edit biography</p>
+                  <p className="part-description">{user?.biography}</p>
+                  <Link className="edit-description" to = "..//setting/settingeditprofile">edit biography</Link>
                 </div>
                 <div className="part-info">
                   <p className="part-head">Websites</p>
-                  <p className="part-description">
-                    this is my biography that i didnt write it
-                  </p>
-                  <p className="edit-description">edit websites</p>
+                  <p className="part-description">{user?.website}</p>
+                  <Link className="edit-description" to = "..//setting/settingeditprofile">edit websites</Link>
                 </div>
               </>
             )}
