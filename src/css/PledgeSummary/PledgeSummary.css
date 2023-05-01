@@ -68,8 +68,10 @@
   flex-direction: row;
   height: 300px;
   padding: 15px 15px;
-  border-bottom: 1px solid #dddddd;
+  border: 0.1px solid #000000;
   cursor: pointer;
+  background-color: #ffffff;
+  margin-bottom: 20px;
 }
 
 .selectedPaymentMethod {
