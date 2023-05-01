@@ -1,0 +1,120 @@
+.profile{
+    color: #282828;
+}
+
+.profile *{
+    margin: 0;
+}
+
+.profile-container{
+
+}
+
+.profile-con{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px rgb(170, 170, 170) solid;
+}
+
+.display-profile{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    background-color: rgb(246, 246, 246);
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.manage-privacy{
+    margin:auto auto auto auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0 3px 6px 1px rgba(0,0,0,0.17);
+    background-color: white;
+
+}
+
+.privacy-status{
+    padding-top: 1%;
+}
+
+.manage{
+    width: 30%;
+    height: 35px;
+    padding-top: 1%;
+    color: white;
+    background-color: #028858;
+    text-align: center;
+}
+
+.manage:hover{
+    background-color: #026844;
+    box-shadow: 0 3px 6px 1px rgba(0,0,0,0.17);
+    transition: all 0.25s ease-in-out;
+    outline: 0;
+    cursor: pointer;
+}
+
+.avatar{
+    height: 150px;
+    width: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:5%;
+    margin-bottom: 3%;
+    background-color: #026844;
+    border-radius: 50%;
+    border: 1px black solid;
+}
+
+.username{
+    font-size:28px;
+    font-weight: 700;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.short-info{
+    margin: 1%;
+}
+
+.view-option{
+    width: 10%;
+    height: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.view-option div{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10%;
+    text-align: center;
+    font-weight: 600;
+    color: #80809E;
+}
+
+.view-option div:hover{
+    cursor: pointer;
+    color: #282828;
+}
+
+.view-option p:hover{
+    color: #060F46;
+    cursor: pointer;
+}
+
+div{
+}

@@ -13,10 +13,10 @@ function SettingPage(){
             <SettingHeader/>
             <Routes>
                 <Route path="" element={<SettingAccount/>}/>
-                <Route path="setting_edit_profile" element={<SettingEditProfile/>}/>
-                <Route path="setting_notifications" element={<SettingNotifications/>}/>
-                <Route path="setting_payment_methods" element={<SettingPaymentMethods/>}/>
-                <Route path="setting_shipping_address" element={<SettingShippingAddress/>}/>
+                <Route path="settingeditprofile" element={<SettingEditProfile/>}/>
+                <Route path="settingnotifications" element={<SettingNotifications/>}/>
+                <Route path="settingpaymentmethods" element={<SettingPaymentMethods/>}/>
+                <Route path="settingshippingaddress" element={<SettingShippingAddress/>}/>
             </Routes>
         </div>
     )

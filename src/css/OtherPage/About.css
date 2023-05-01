@@ -1,0 +1,48 @@
+.about{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 100%;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.about .part-info{
+    width: 80%;
+    height:80px;
+    padding-top: 4%;
+    padding-left: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    border-bottom:1px #80809E solid;
+}
+
+.about .part-head{
+    width: 15%;
+    height:80%;
+    margin: 2px;
+    text-align: center;
+    font-weight: 500;
+    color: #80809E;
+}
+
+.about .part-description{
+    width: 30%;
+    height:80%;
+    margin: 3px;
+    text-align: left;
+}
+
+.about .edit-description{
+    width: auto;
+    color: #2752FF;
+    margin-left: 10px;
+}
+
+.about .edit-description:hover{
+    color: #282828;
+    cursor: pointer;
+}

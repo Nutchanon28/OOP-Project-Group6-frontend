@@ -54,10 +54,10 @@ function SettingHeader(){
                     </div>
                     <div className="setting-option">
                         <NavLink className={`${showUnderline1 ? 'account' : null}`} to="" onClick={() => handlebutton1()}><p>Account</p></NavLink>
-                        <NavLink className={`${showUnderline2 ? 'account' : null}`} to="setting_edit_profile" onClick={() => handlebutton2()}><p>Edit Profile</p></NavLink>
-                        <NavLink className={`${showUnderline3 ? 'account' : null}`} to="setting_notifications" onClick={() => handlebutton3()}><p>Notifications</p></NavLink>
-                        <NavLink className={`${showUnderline4 ? 'account' : null}`} to="setting_payment_methods" onClick={() => handlebutton4()}><p>Payment Methods</p></NavLink>
-                        <NavLink className={`${showUnderline5 ? 'account' : null}`} to="setting_shipping_address" onClick={() => handlebutton5()}><p>Shipping Address</p></NavLink>
+                        <NavLink className={`${showUnderline2 ? 'account' : null}`} to="settingeditprofile" onClick={() => handlebutton2()}><p>Edit Profile</p></NavLink>
+                        <NavLink className={`${showUnderline3 ? 'account' : null}`} to="settingnotifications" onClick={() => handlebutton3()}><p>Notifications</p></NavLink>
+                        <NavLink className={`${showUnderline4 ? 'account' : null}`} to="settingpaymentmethods" onClick={() => handlebutton4()}><p>Payment Methods</p></NavLink>
+                        <NavLink className={`${showUnderline5 ? 'account' : null}`} to="settingshippingaddress" onClick={() => handlebutton5()}><p>Shipping Address</p></NavLink>
                     </div>
                 </div>
             </div>

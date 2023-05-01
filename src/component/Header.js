@@ -6,6 +6,11 @@ import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
 
 const Header = () => {
+  const { projectId, setProjectId } = useContext(DataContext);
+  const { userId, setUserId } = useContext(DataContext);
+  const [profileClick, setProfileCLick] = useState(false);
+  const [myProject, setMyProject] = useState([]);
+  const [newProjectId, setNewProjectId] = useState(1);
 
     const { projectId, setProjectId } = useContext(DataContext)
     const { userId, setUserId } = useContext(DataContext)
@@ -21,39 +26,39 @@ const Header = () => {
         setMyProject(responseJson)
     }
 
-    function toggleProfileClick() {
-        setProfileCLick(!profileClick)
-    }
+  function toggleProfileClick() {
+    setProfileCLick(!profileClick);
+  }
 
-    async function onStartProjectCLick() {
-        const newProject = { 
-            project_name: `Project${Date.now().toString()}`, 
-            category: "Art", 
-            project_image: "image", 
-            project_duration: 1, 
-            project_detail: "",
-            pledge_goal: 1,
-            pledge_reward: [], 
-            creator_id: userId,
-            payment_detail: {
-                legal_first_name: "",
-                legal_last_name: "", 
-                email_address: "",
-                date_of_birth: "", 
-                home_address: "", 
-                city: "", 
-                state: "", 
-                postal_code: "", 
-                phone_number: "", 
-                account_number: "", 
-                bank: ""
-            }
-        }
-        await fetch("http://127.0.0.1:8000/add_project", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newProject)
-          })
+  async function onStartProjectCLick() {
+    const newProject = {
+      project_name: `Project${Date.now().toString()}`,
+      category: "Art",
+      project_image: "image",
+      project_duration: 1,
+      project_detail: "",
+      pledge_goal: 1,
+      pledge_reward: [],
+      creator_id: userId,
+      payment_detail: {
+        legal_first_name: "",
+        legal_last_name: "",
+        email_address: "",
+        date_of_birth: "",
+        home_address: "",
+        city: "",
+        state: "",
+        postal_code: "",
+        phone_number: "",
+        account_number: "",
+        bank: "",
+      },
+    };
+    await fetch("http://127.0.0.1:8000/add_project", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newProject),
+    });
 
         const response = await fetch(`http://127.0.0.1:8000/get_last_project`)
         const responseJson = await response.json()
@@ -64,10 +69,23 @@ const Header = () => {
         setIsEdit(false)
     }
 
-    useEffect(() => {
-        getMyProject()
-        console.log(myProject)
-    }, [profileClick])
+  useEffect(() => {
+    getMyProject();
+    console.log(myProject);
+  }, [profileClick]);
+
+  let myProjectElements = null;
+  if (myProject.length) {
+    myProjectElements = myProject.map((project) => {
+      return (
+        <p>
+          <Link to={`start-project/${project.id}`}>
+            {project._Project__project_name}
+          </Link>
+        </p>
+      );
+    });
+  }
 
     let myProjectElements = []
     if(myProject.length) {
@@ -126,7 +144,9 @@ const Header = () => {
                 </div>
             </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default Header;

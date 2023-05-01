@@ -64,8 +64,8 @@ function AddBasic() {
     }
 
     function onProjectChange(event) {
-        let {name, value} = event.target      
-
+        let {name, value} = event.target
+        
         if(name == "name") {
             if(value.length > 60) {
                 value = value.substring(0, 60)
