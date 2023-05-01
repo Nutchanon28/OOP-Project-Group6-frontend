@@ -8,11 +8,14 @@ import axios from 'axios';
 
 function AddReward() {
     const {projectId, setProjectId} = useContext(DataContext)
-    const {rewardId, setRewardId} = useContext(DataContext)
+    let {rewardId, setRewardId} = useContext(DataContext)
+    const [myShipping, setMyShipping] = useState([
+        "", "Bangkok", "Chiangmai", "Khonkaen", "Phuket",
+    ])
     const [project, setProject] = useState({})
     const [rewardInfo, setRewardInfo] = useState({
        name: '', amount: 1, description: '', month: 'January',
-       year: '2023', quantity: 1, ships_to: "Bangkok"  
+       year: '2023', quantity: 1, ships_to: []  
     })
     const [rewardInclude, setRewardInclude] = useState({
         name:'', quantity: 1
@@ -21,11 +24,11 @@ function AddReward() {
 
     const [buttonStatus, setButtonStatus] = useState([true, false]);
     const [addItemStatus, setAddItemStatus] = useState(false);
-    const [shipings, setShippings] = useState([])
+    const [shippings, setShippings] = useState([])
     const [focus, setFocus] = useState(99)
+    const [selectedAddress, setSelectedAddress] = useState("")
     const navigate = useNavigate()
     const theDate = new Date()
-
     function onRewardInfoValueChange(event) {
         let {name, value} = event.target;
         if(name == "amount") {
@@ -101,6 +104,28 @@ function AddReward() {
         })
     }
 
+    function onAddShipping() {
+        // setRewardInfo((prevInfo) => {
+        //     const prevShipsTo = prevInfo.ships_to
+        //     return {
+        //         ...prevInfo,
+        //         ships_to: [...prevShipsTo, selectedAddress]
+        //     }
+        // })
+        if(selectedAddress == "") return;
+        setShippings((prevShipping) => {
+            return [...prevShipping, selectedAddress]
+        })
+        setMyShipping((prevShipping) => {
+            const newShippings = prevShipping.filter((shipping) => {
+                return shipping != selectedAddress
+            })
+            return newShippings
+        })
+        setSelectedAddress("")
+        console.log(shippings)
+    }
+
 
     async function onSaveRewardClick() {
         function  month2Int(month) {
@@ -138,7 +163,7 @@ function AddReward() {
             _PledgeReward__reward_backers: 0,
             _PledgeReward__reward_left: rewardInfo.quantity,
             _RewardShipping__estimated_delivery: {month: rewardInfo.month, year: rewardInfo.year},
-            _RewardShipping__ships_to: rewardInfo.ships_to, 
+            _RewardShipping__ships_to: shippings, 
             _RewardShipping__address: "", 
             _RewardShipping__shipping_cost: 99
         }
@@ -183,6 +208,19 @@ function AddReward() {
             name:'', 
             quantity: 1
         })
+    }
+
+    function onDeleteShippingClick(idx) {
+        setMyShipping((prevShipping) => {
+            let newShippings = [...prevShipping, shippings[idx]]
+            newShippings.sort()
+            return newShippings
+        })
+        const newShippings = shippings.filter((shipping, index) => {
+            return index != idx
+        })
+        setShippings(newShippings)
+        console.log(`delete shipping idx = ${idx}`)
     }
     const tmp = (
         <div className='inner-button'>
@@ -237,6 +275,23 @@ function AddReward() {
             />
         </div>
     )
+    
+    const myShippingElements = myShipping.map((shippings, idx) => {
+            return (
+                <option value={shippings}>{shippings}</option>
+            )
+        })
+
+    const shipsToElements = shippings.map((shipping, idx) => {
+        return  (
+            <div key={idx} className='shipping-element'>
+                <div>{shipping}</div>
+                <div onClick={() => onDeleteShippingClick(idx)} className='delete-icon'>X</div>
+            </div>
+        )
+            
+    })
+
     return (
         <div className='add-reward'>
             <div className='add-reward-container'>
@@ -325,13 +380,17 @@ function AddReward() {
                             </div>
                             <div className='section-add-reward'>
                                 <p>Shipping</p>
+                                <div className='shipping-element-container'>
+                                    {shipsToElements}
+                                </div>
                                 <select
-                                    placeholder='Bangkok'
+                                    value={selectedAddress}
+                                    onChange={(event) => setSelectedAddress(event.target.value)
+                                    }
                                 >
-                                    <option>Bangkok</option>
-                                    <option>Phuket</option>
+                                    {myShippingElements}
                                 </select>
-                                <div className='add-shipping-button'>
+                                <div className='add-shipping-button' onClick={onAddShipping}>
                                     Add shipping
                                 </div>
                             </div>

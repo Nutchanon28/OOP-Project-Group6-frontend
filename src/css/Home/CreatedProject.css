@@ -73,6 +73,7 @@
 
 .created-project-image {
     position: relative;
-    width: 20%;
-    background-color: aquamarine;
+    width: 160px;
+    height: 90px;
+    margin-right: 18px;
 }

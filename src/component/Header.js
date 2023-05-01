@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "../css/Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
@@ -9,12 +9,14 @@ const Header = () => {
 
     const { projectId, setProjectId } = useContext(DataContext)
     const { userId, setUserId } = useContext(DataContext)
+    const { isEdit, setIsEdit} = useContext(DataContext)
     const [profileClick, setProfileCLick] = useState(false)
     const [myProject, setMyProject] = useState([])
     const [newProjectId, setNewProjectId] = useState(1)
+    const navigate = useNavigate()
 
     async function getMyProject() {
-        const response = await fetch(`http://127.0.0.1:8000/view_my_project/${userId}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
         const responseJson = await response.json()
         setMyProject(responseJson)
     }
@@ -59,6 +61,7 @@ const Header = () => {
         console.log(responseJson)
         setProjectId(responseJson.id)
         console.log(`Your project id is ${responseJson.id}`)
+        setIsEdit(false)
     }
 
     useEffect(() => {
@@ -66,13 +69,25 @@ const Header = () => {
         console.log(myProject)
     }, [profileClick])
 
-    let myProjectElements = null
+    let myProjectElements = []
     if(myProject.length) {
-        myProjectElements = myProject.map((project) => {
-            return (
-            <p><Link to={`start-project/${project.id}`}>{project._Project__project_name}</Link></p> 
+        let len = myProject.length
+        for(let i = len - 1; i >= len - 5 && i >= 0; i--) {
+            myProjectElements.push(
+                (
+                    <p  className="to-my-project"
+                        key={myProject[i].id}
+                        onClick={() => {
+                            setIsEdit(true)
+                            setProjectId(myProject[i].id)
+                            navigate("/start-project")
+                        }}
+                    >
+                        {myProject[i]._Project__project_name}
+                    </p> 
+                )
             )
-        })
+        }
     }
 
     return (
@@ -88,7 +103,12 @@ const Header = () => {
                     </div>
                     <ul className='right-menu'>
                         <li><a href="#">Search <HiSearch className='search-icon'/></a></li>
-                        <li><a href="#"><BiUserCircle className='user-icon' onClick={toggleProfileClick}/></a></li>
+                        <li>
+                            <BiUserCircle 
+                                className='user-icon'
+                                onClick={toggleProfileClick}
+                            />
+                        </li>
                     </ul>
                 </div>
                 
