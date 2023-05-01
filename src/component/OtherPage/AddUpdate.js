@@ -14,7 +14,7 @@ function AddUpdate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("you have entered");
-  
+
     const data = defaultLayout
       ? {
           project_id: parseInt(projectId),
@@ -24,8 +24,10 @@ function AddUpdate() {
           update_image: imageUrl,
         }
       : {
-          title: title,
-          body: body,
+          project_id: parseInt(projectId),
+          user_id: parseInt(userId),
+          question: title,
+          answer: body,
         };
     const response = await axios.post(
       defaultLayout
@@ -33,7 +35,7 @@ function AddUpdate() {
         : "http://127.0.0.1:8000/add_faq",
       data
     );
-    console.log(response)
+    console.log(response);
   };
 
   return (
