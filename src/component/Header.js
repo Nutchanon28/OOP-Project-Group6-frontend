@@ -6,18 +6,12 @@ import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
 
 const Header = () => {
-  const { projectId, setProjectId } = useContext(DataContext);
-  const { userId, setUserId } = useContext(DataContext);
-  const [profileClick, setProfileCLick] = useState(false);
-  const [myProject, setMyProject] = useState([]);
-  const [newProjectId, setNewProjectId] = useState(1);
-
-    const { projectId, setProjectId } = useContext(DataContext)
-    const { userId, setUserId } = useContext(DataContext)
+    const { projectId, setProjectId } = useContext(DataContext);
+    const { userId, setUserId } = useContext(DataContext);
+    const [profileClick, setProfileCLick] = useState(false);
+    const [myProject, setMyProject] = useState([]);
+    const [newProjectId, setNewProjectId] = useState(1);
     const { isEdit, setIsEdit} = useContext(DataContext)
-    const [profileClick, setProfileCLick] = useState(false)
-    const [myProject, setMyProject] = useState([])
-    const [newProjectId, setNewProjectId] = useState(1)
     const navigate = useNavigate()
 
     async function getMyProject() {
@@ -73,19 +67,6 @@ const Header = () => {
     getMyProject();
     console.log(myProject);
   }, [profileClick]);
-
-  let myProjectElements = null;
-  if (myProject.length) {
-    myProjectElements = myProject.map((project) => {
-      return (
-        <p>
-          <Link to={`start-project/${project.id}`}>
-            {project._Project__project_name}
-          </Link>
-        </p>
-      );
-    });
-  }
 
     let myProjectElements = []
     if(myProject.length) {
@@ -144,8 +125,6 @@ const Header = () => {
                 </div>
             </div>
         </div>
-      </div>
-    </div>
   );
 };
 
