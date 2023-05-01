@@ -1,0 +1,112 @@
+.set-funding * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.set-funding {
+
+}
+
+.set-funding-container {
+}
+
+.set-funding-con {
+
+}
+
+.funding-header {
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #DCDEDD;
+}
+
+.funding-header h1 {
+    text-align: center;
+    color: #282828;
+    font-weight: 400;
+}
+
+.funding-header h1 + p {
+    text-align: center;
+    color: #656969;
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.funding-section {
+    border-bottom: 1px solid #DCDEDD;
+}
+
+.flex-funding {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1250px;
+    margin: 42px auto;
+}
+
+.left-element-funding {
+    width: 30%;
+}
+
+.left-element-funding p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #656969;
+}
+
+.left-element-funding p:first-child {
+    font-size: 18px;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+.left-element-funding p:last-child{
+    margin-bottom: 0;
+}
+
+.right-element-funding {
+    width: 58%;
+}
+
+.right-element-funding input{
+    padding: 12px;
+    border: 1px solid #DEDEDE;
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.title-funding {
+    margin-bottom: 42px;
+}
+
+.right-element-funding p{
+    font-size: 14px;
+    color: #282828;
+}
+
+.under-text {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #015738;
+}
+
+.grand {
+    position: fixed;
+    top: 15.3px;
+    right: 34.5px;
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    width: 192px;
+    z-index: 100;
+    opacity: 0.5;
+}
+
+

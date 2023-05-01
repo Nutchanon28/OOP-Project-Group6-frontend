@@ -32,7 +32,7 @@ function SettingShippingAddress(){
     }
 
     async function onShippingAddressSave(){
-        if (myShippingAddress.length === 3)
+        if (myShippingAddress.length >= 3)
         return
 
         if (

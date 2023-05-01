@@ -1,0 +1,39 @@
+.start-project-header * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.start-project-header {
+    border-bottom: 1px solid #DDDDDD;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    background-color: #FFFFFF;
+    z-index: 99;
+}
+
+.start-project-header-container {
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+.start-project-header-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+    align-items: center;
+}
+
+.save-project-button {
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    width: 12.5%;
+}
+
+.save-project-button:hover {
+    background-color: #015738;
+}

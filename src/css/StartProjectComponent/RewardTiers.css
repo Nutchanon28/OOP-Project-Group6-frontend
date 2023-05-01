@@ -1,0 +1,130 @@
+.reward-tiers * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #282828;
+}
+
+.reward-tiers {
+    
+}
+
+
+.reward-tiers-container{
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.reward-tiers-con {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.reward-outer-con {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.reward-outer-con:hover {
+    box-shadow: 0 3px 6px 1px rgba(0,0,0,0.17);
+    transition: all 0.25s ease-in-out;
+    outline: 0;
+}
+
+.operation-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border: 1px solid #DCDEDD;
+    border-top: none;
+    padding: 12px;
+    padding-right: 20px;
+    color: #656969;
+}
+
+.reward-containerr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 216px;
+    border: 1px solid #DCDEDD;
+    padding: 24px 0 42px;
+}
+
+.reward-amount {
+    padding-left: 18px;
+    width: 15%;
+    font-size: 18px;
+}
+
+.reward-detail {
+    width: 50%;
+}
+
+.reward-detail div{
+    font-size: 14px;
+}
+
+.reward-detail div:first-child {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.reward-includes {
+    width: 30%;
+    font-size: 14px;
+    padding-left: 18px;
+}
+
+.reward-tiers-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 18px 0 12px;
+}
+
+.reward-tiers-nav div:nth-child(1) {
+    width: 15%;
+}
+
+.reward-tiers-nav div:nth-child(2) {
+    width: 50%;
+}
+
+.reward-tiers-nav div:nth-child(3) {
+    width: 30%;
+}
+
+
+.reward-tiers-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DCDEDD;
+    height: 60px;
+}
+
+.reward-tiers-header > div {
+    color: #282828;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.reward-tiers-header-button {
+    padding: 10.5px 36px;
+    color: #FFFFFF;
+    background-color: #464646;
+    font-size: 16px;
+    text-align: center;
+}
+
+.reward-tiers-header-button:hover {
+    background-color: #000000;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,178 @@
+
+.add-basic * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.add-basic input.input-text, input.password, input[type="text"], textarea, textarea.input-textarea, iframe.editor, select {
+    background: white;
+    border: 1px solid #dad7d4;
+    color: #020621;
+    font-size: 14px;
+    margin: 0;
+    padding: 6px 5px;
+}
+
+.add-basic {
+
+}
+
+.add-basic-container {
+
+}
+
+.add-basic-con {
+}   
+
+.basic-header {
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #DCDEDD;
+}
+
+.basic-header h1 {
+    text-align: center;
+    color: #282828;
+    font-weight: 400;
+}
+
+.basic-header h1 + p {
+    text-align: center;
+    color: #656969;
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.basic-section {
+    border-bottom: 1px solid #DCDEDD;
+}
+
+.flex-basic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1250px;
+    margin: 42px auto;
+}
+
+.left-element-basic {
+    width: 30%;
+}
+
+.left-element-basic p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #656969;
+}
+
+.left-element-basic p:first-child {
+    font-size: 18px;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+.left-element-basic p:last-child{
+    margin-bottom: 0;
+}
+
+.right-element-basic {
+    width: 58%;
+    position: relative;
+}
+
+.right-element-basic input{
+    padding: 12px;
+    border: 1px solid #DEDEDE;
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.title-basic {
+    margin-bottom: 42px;
+}
+
+.right-element-basic p{
+    font-size: 14px;
+    color: #282828;
+}
+
+.title-basic input{
+    
+}
+
+.subtitle-basic {
+    margin-top: 12px;
+}
+
+.subtitle-basic p{
+    font-size: 14px;
+}
+
+select {
+    padding: 20px;
+    border: 1px solid #DEDEDE;
+    margin-top: 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+option {
+    padding: 30px;
+}
+
+.category-basic p{
+    margin-bottom: 12px;
+}
+
+.universe {
+    position: fixed;
+    top: 15.3px;
+    right: 34.5px;
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    width: 192px;
+    z-index: 100;
+}
+
+.universe:hover {
+    background-color: #015738;
+    cursor: pointer;
+}
+
+.image-border {
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 56.25%;
+    position: relative;
+}
+
+.under-text {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #015738;
+}
+
+.side-right {
+    position: absolute;
+    right: 0;
+}
+
+.grand {
+    position: fixed;
+    top: 15.3px;
+    right: 34.5px;
+    font-size: 14px;
+    padding: 10.5px 36px;
+    background-color: #028858;
+    color: #FFFFFF;
+    text-align: center;
+    width: 192px;
+    z-index: 100;
+    opacity: 0.5;
+}

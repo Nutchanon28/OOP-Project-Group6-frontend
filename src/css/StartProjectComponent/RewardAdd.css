@@ -1,0 +1,67 @@
+.reward-add *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #282828;
+}
+
+.reward-add {
+    position: sticky;
+    top: 100px;
+    border: 1px solid #dad7d4;
+    padding: 24px;
+    align-self: flex-start;
+}
+
+.font10 {
+    font-size: 10px;
+}
+
+.reward-add > .pledge-goal {
+    margin-bottom: 24px;
+    font-size: 18px;
+}
+
+.reward-add > .reward-name {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.reward-add > .description {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #656969;
+}
+
+.reward-add > .include {
+    margin-bottom: 24px;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.reward-add-image {
+    max-height: 350px;
+    background-color: #F3F3F3;
+}
+
+.reward-add-group {
+
+}
+
+.reward-add-group {
+    margin-bottom: 24px;
+}
+
+.reward-add-group:last-child {
+    margin: 0;
+}
+
+.reward-add-group p{
+    font-size: 14px;
+}
+
+.reward-add-group p:first-child{
+    font-size: 10px;
+    color: #656969;
+}
