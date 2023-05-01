@@ -1,0 +1,52 @@
+.footer{
+    color: #282828;
+}
+
+.footer *{
+    margin: 0;
+}
+
+.footer-container{
+    width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.footer-con{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 70px;
+    border: 1px black solid;
+}
+
+.footer-option{
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+}
+
+.footer-option > p{
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.option-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.option-info p{
+    height: 20px;
+    margin-bottom: 4px;
+}
+
+.version-show{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    height: 0px;
+}
+div{
+}

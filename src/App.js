@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Home from "./component/Home/Home";
+import OtherPage from "./component/OtherPage/OtherPage";
 import HomepageFeaturedProject from "./component/Project/HomepageFeaturedProject";
 import PledgeSummary from "./component/PledgeSummary/PledgeSummary";
 import StartProject from "./component/StartProjectComponent/StartProject";
@@ -29,6 +30,7 @@ function App() {
               />
               <Route path="backing" element={<PledgeSummary />} />
               <Route path="setting/*" element={<SettingPage />} />
+              <Route path="other" element={<OtherPage />} />
               <Route path="/created-project/*" element={<CreatedProject />} />
             </Route>
             <Route path="/start-project/*" element={<ProjectCreatingLayout />} >
