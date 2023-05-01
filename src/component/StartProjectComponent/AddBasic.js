@@ -13,15 +13,25 @@ const Image = styled.div`
     width: 100%;
     background: url(${props => props.url});
     background-size: cover;
+    background-position: center;
 `
 
 function AddBasic() {
 
     const { projectId, setProjectId } = useContext(DataContext);
+    const { isEdit, setIsEdit } = useContext(DataContext)
 
     const [project, setProject] = useState({}) 
     const [focus, setFocus] = useState(99)
     const [edit, setEdit] = useState(false)
+
+    const getTheProject = async () => {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/view_project/${projectId}`
+        );
+        setProject(response.data.project_detail);
+        console.log(response.data.project_detail);
+      };
 
     const getProject = async () => {
         const response = await axios.get(
@@ -89,9 +99,17 @@ function AddBasic() {
     }
 
     useEffect(() => {
-        getProject();
+        if(isEdit) {
+            getTheProject()
+        }
+        else {
+            getProject();
+        }
+        
         console.log("this won't cause infinite loop");
-    }, [projectId]);
+        console.log(`projectId: ${projectId}`);
+        console.log(`isEdit: ${isEdit}`);
+    }, [projectId, isEdit]);
 
     let temp = null
     let projectImageElement = null

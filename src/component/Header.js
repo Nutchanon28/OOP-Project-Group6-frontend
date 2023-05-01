@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "../css/Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
@@ -12,13 +12,19 @@ const Header = () => {
   const [myProject, setMyProject] = useState([]);
   const [newProjectId, setNewProjectId] = useState(1);
 
-  async function getMyProject() {
-    const response = await fetch(
-      `http://127.0.0.1:8000/view_my_project/${userId}`
-    );
-    const responseJson = await response.json();
-    setMyProject(responseJson);
-  }
+    const { projectId, setProjectId } = useContext(DataContext)
+    const { userId, setUserId } = useContext(DataContext)
+    const { isEdit, setIsEdit} = useContext(DataContext)
+    const [profileClick, setProfileCLick] = useState(false)
+    const [myProject, setMyProject] = useState([])
+    const [newProjectId, setNewProjectId] = useState(1)
+    const navigate = useNavigate()
+
+    async function getMyProject() {
+        const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
+        const responseJson = await response.json()
+        setMyProject(responseJson)
+    }
 
   function toggleProfileClick() {
     setProfileCLick(!profileClick);
@@ -54,13 +60,14 @@ const Header = () => {
       body: JSON.stringify(newProject),
     });
 
-    const response = await fetch(`http://127.0.0.1:8000/get_last_project`);
-    const responseJson = await response.json();
-    setNewProjectId(responseJson.id);
-    console.log(responseJson);
-    setProjectId(responseJson.id);
-    console.log(`Your project id is ${responseJson.id}`);
-  }
+        const response = await fetch(`http://127.0.0.1:8000/get_last_project`)
+        const responseJson = await response.json()
+        setNewProjectId(responseJson.id)
+        console.log(responseJson)
+        setProjectId(responseJson.id)
+        console.log(`Your project id is ${responseJson.id}`)
+        setIsEdit(false)
+    }
 
   useEffect(() => {
     getMyProject();
@@ -80,56 +87,62 @@ const Header = () => {
     });
   }
 
-  return (
-    <div className="header">
-      <div className="container">
-        <div className="header-con">
-          <ul className="left-menu">
-            <li>
-              <a href="#">Discover</a>
-            </li>
-            <li onClick={onStartProjectCLick}>
-              <Link to={"start-project"}>Start a project</Link>
-            </li>
-          </ul>
-          <div className="logo">
-            <Link to="">
-              <h2>KICKSTARTER</h2>
-            </Link>
-          </div>
-          <ul className="right-menu">
-            <li>
-              <a href="#">
-                Search <HiSearch className="search-icon" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <BiUserCircle
-                  className="user-icon"
-                  onClick={toggleProfileClick}
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className={`menu-tab + ${profileClick ? "" : "hidden"}`}>
-        <div className="section-menu-tab">
-          <p>YOUR ACCOUNT</p>
-          <p>
-            <Link to="profile">Profile</Link>
-          </p>
-          <p>
-            <Link to="setting">Settings</Link>
-          </p>
-        </div>
-        <div className="section-menu-tab">
-          <p>CREATED PROJECTS</p>
-          {myProjectElements}
-          <Link to="created-project">
-            <p>view all</p>
-          </Link>
+    let myProjectElements = []
+    if(myProject.length) {
+        let len = myProject.length
+        for(let i = len - 1; i >= len - 5 && i >= 0; i--) {
+            myProjectElements.push(
+                (
+                    <p  className="to-my-project"
+                        key={myProject[i].id}
+                        onClick={() => {
+                            setIsEdit(true)
+                            setProjectId(myProject[i].id)
+                            navigate("/start-project")
+                        }}
+                    >
+                        {myProject[i]._Project__project_name}
+                    </p> 
+                )
+            )
+        }
+    }
+
+    return (
+        <div className="header">
+            <div className='container'>
+                <div className='header-con'>
+                    <ul className='left-menu'>
+                        <li><a href="#">Discover</a></li>
+                        <li onClick={onStartProjectCLick}><Link to={"start-project"}>Start a project</Link></li>
+                    </ul>
+                    <div className='logo'>
+                    <Link to=""><h2>KICKSTARTER</h2></Link>
+                    </div>
+                    <ul className='right-menu'>
+                        <li><a href="#">Search <HiSearch className='search-icon'/></a></li>
+                        <li>
+                            <BiUserCircle 
+                                className='user-icon'
+                                onClick={toggleProfileClick}
+                            />
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div className={`menu-tab + ${profileClick ? "" : "hidden"}`}>
+                <div className='section-menu-tab'>
+                    <p>YOUR ACCOUNT</p>
+                    <p>Profile</p>
+                    <p>Settings</p>
+                </div>
+                <div className="section-menu-tab">
+                    <p>CREATED PROJECTS</p>
+                    {myProjectElements}
+                    <Link to="created-project"><p>view all</p></Link>
+                </div>
+            </div>
         </div>
       </div>
     </div>

@@ -316,4 +316,35 @@
     text-align: center;
 }
 
+.add-shipping-button:hover {
+    background-color: #000000;
+}
+
+.shipping-element-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.shipping-element {
+    width: 30%;
+    padding: 12px 24px;
+    text-align: center;
+    border: 1px solid #DCDEDD;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-icon {
+    color: #656969;
+}
+
+.delete-icon:hover {
+    color: #FF0000;
+}
+
 

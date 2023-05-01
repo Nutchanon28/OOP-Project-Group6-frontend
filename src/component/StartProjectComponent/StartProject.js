@@ -17,25 +17,24 @@ function StartProject() {
     //const { projectId } = useParams()
     console.log(projectId)
     
-    useEffect(() => {
-        const getProject = async () => {
-          const response = await axios.get(
-            `http://127.0.0.1:8000/get_last_project`
-          );
-          console.log(response.data);
-          setProjectId(response.data.id);
-        };
-        getProject();
+    // useEffect(() => {
+    //     const getProject = async () => {
+    //       const response = await axios.get(
+    //         `http://127.0.0.1:8000/get_last_project`
+    //       );
+    //       console.log(response.data);
+    //       setProjectId(response.data.id);
+    //     };
+    //     getProject();
     
-        console.log("this won't cause infinite loop");
-        console.log(`Your project id is ${projectId}`)
-        //setHasCommented(false);
-      }, [projectId]);
+    //     console.log("this won't cause infinite loop");
+    //     console.log(`Your project id is ${projectId}`)
+    //   }, [projectId]);
     return (
         <div className='start-project'>
             <div className='start-project-container'>
                 <div className='start-project-con'>
-                    <StartProjectNav projectId={projectId} setProjectId={setProjectId}/>
+                    {/* <StartProjectNav projectId={projectId} setProjectId={setProjectId}/> */}
                     <Routes>
                         <Route path="" element={<AddBasic />}/>
                         <Route path="set-funding" element={<SetFunding />}/>

@@ -75,6 +75,11 @@ a:hover {
     font-size: 30px;
 }
 
+.user-icon:hover {
+    color: #037362;
+    cursor: pointer;
+}
+
 .menu-tab {
     position: absolute;
     width: 375px;
@@ -108,4 +113,9 @@ a:hover {
 .section-menu-tab p:first-child{
     margin-bottom: 20px;
     font-weight: 600;
+}
+
+.to-my-project:hover {
+    cursor: pointer;
+    color: #037362;
 }
