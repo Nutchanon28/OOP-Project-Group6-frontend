@@ -27,8 +27,19 @@ function AddBasic() {
 
     const getTheProject = async () => {
         const response = await axios.get(
-          `http://127.0.0.1:8000/view_project/${projectId}`
+          `http://127.0.0.1:8000/get_project/${projectId}`
         );
+        const data = await response.data
+        // const theProject = {
+        //     category: data._Project__category,
+        //     detail: data._Project__project_detail,
+        //     image: data._Project__project_image,
+        //     name: data._Project__project_name,
+        //     number_of_backers: data.number_of_backers,
+        //     pledge_goal: data._Project__pledge_goal,
+        //     pledge_received: data._Project__pledge_received,
+        //     project_duration: data._Project__project_duration
+        // }
         setProject(response.data.project_detail);
         console.log(response.data.project_detail);
       };

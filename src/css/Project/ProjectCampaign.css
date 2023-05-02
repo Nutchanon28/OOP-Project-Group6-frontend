@@ -6,6 +6,7 @@
 
 .project-campaign {
   margin-top: 48px;
+  position: relative;
 }
 
 .project-campaign > .container {
@@ -53,9 +54,9 @@
 }
 
 .project-campaign .right-menu {
+  align-self: flex-start;
   position: sticky;
   top: 118px;
-  align-self: flex-start;
   width: 25%;
   height: 670px;
   overflow: auto;
@@ -229,3 +230,5 @@
   font-size: 16px;
   text-align: center;
 }
+
+.container-for-right-menu {}

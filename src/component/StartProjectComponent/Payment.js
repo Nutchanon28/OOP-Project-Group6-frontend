@@ -14,7 +14,7 @@ function Payment() {
     const [canSubmit, setCanSubmit] = useState(false)
 
     async function getPayment() {
-        const response = await fetch(`http://127.0.0.1:8000/get_creditcard?user_id=${userId}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_payment_method?user_id=${userId}`)
         const responseJson = await response.json()
         setCreditCards(responseJson)
         console.log(responseJson)

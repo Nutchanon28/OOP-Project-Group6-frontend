@@ -41,7 +41,7 @@ function SetDescription() {
 
     useEffect(() => {
         async function getProject() {
-            const response = await fetch(`http://127.0.0.1:8000/view_project/${projectId}`)
+            const response = await fetch(`http://127.0.0.1:8000/get_project/${projectId}`)
             const responseJson = await response.json()
             setProject(responseJson.project_detail)
             console.log(responseJson.project_detail)

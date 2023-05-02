@@ -22,18 +22,48 @@ function CreatedProject() {
     const [myProject, setMyproject] = useState([])
     const navigate = useNavigate();
 
-    useEffect(() => {
-        async function getMyProject() {
-            const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
-            const responseJson = await response.json()
-            setMyproject(responseJson)
-            console.log(responseJson)
+    async function getMyProject() {
+        const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
+        const responseJson = await response.json()
+        setMyproject(responseJson)
+        console.log(responseJson)
+    }
+
+    function canLaunch(project){
+        if(!!project._Project__credit_card) {
+            return true;
         }
+        return false;
+    }
+
+    async function launchProject(theId) {
+        await fetch(`http://127.0.0.1:8000/launch_project?id=${theId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify()
+          })
+        console.log(`Launch project id: ${theId}`)
+        getMyProject()
+    }
+
+    useEffect(() => {
         getMyProject()
     }, [])
 
 
     const myProjectElements = myProject.map((project) => {
+        let launchTag = null
+        if(!!project._Project__credit_card) {
+            launchTag = 
+            <div 
+                className='launch-project-status'
+                onClick={() => {
+                    launchProject(project.id)
+                }}
+            >
+                Launch this project
+            </div> 
+        }
         return (
             <div key={project.id} className='created-project-element'>
                 <div className='created-project-image'>
@@ -41,9 +71,10 @@ function CreatedProject() {
 
                     </CreatedProjectImage>
                 </div>
-                <div>
+                <div className='created-project-name'>
                     {project._Project__project_name}
                 </div>
+                {launchTag}
                 <div 
                     className='created-project-status' 
                     onClick={() => {

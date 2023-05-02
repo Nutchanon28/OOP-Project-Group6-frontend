@@ -11,6 +11,7 @@
     height: 70px;
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
+    z-index: 99;
 }
 
 .project-nav .container {
@@ -40,6 +41,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: #FFFFFF;
+
 }
 
 .about-project {

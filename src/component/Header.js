@@ -116,7 +116,7 @@ const Header = () => {
                 <div className='section-menu-tab'>
                     <p>YOUR ACCOUNT</p>
                     <p>Profile</p>
-                    <p>Settings</p>
+                    <Link to="setting"><p>Settings</p></Link>
                 </div>
                 <div className="section-menu-tab">
                     <p>CREATED PROJECTS</p>
