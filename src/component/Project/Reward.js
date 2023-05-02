@@ -28,8 +28,8 @@ const Reward = ({ reward }) => {
           <div className="reward-delivery">
             <p>ESTIMATED DELIVERY</p>
             <p>
-              {reward._RewardShipping__estimated_delivery}
-              Ships to: {reward._RewardShipping__ships_to}
+              Adipisicing fugiat nisi ullamco mollit quis magna culpa duis
+              cillum qui amet ullamco ullamco.
             </p>
           </div>
           <div className="reward-remaining">
