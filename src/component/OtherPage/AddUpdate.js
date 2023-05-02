@@ -11,6 +11,8 @@ function AddUpdate() {
   const [defaultLayout, setDefaultLayout] = useState(true);
   const { projectId, userId } = useContext(DataContext);
 
+  console.log(`your project id is ${projectId}`)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("you have entered");

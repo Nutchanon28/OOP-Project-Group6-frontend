@@ -15,7 +15,7 @@ function SettingNotifications() {
   useEffect(() => {
     const getProjects = async () => {
       const response = await axios.get(
-        `http://127.0.0.1:8000/view_notifications/${3}`
+        `http://127.0.0.1:8000/view_notifications/${userId}`
       );
       console.log(response);
       const backedNotifications = response.data.filter(

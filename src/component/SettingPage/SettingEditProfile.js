@@ -67,8 +67,7 @@ function SettingEditProfile(){
 
                 <div className="editprofile-detail-block">
                     <p>Avatar</p>
-                    <input name="_User__avatar" onChange={onEditProfileChange} type="file"/>
-                    <p className="small-detail">JPEG, PNG, GIF, or BMP • 200MB file limit</p>
+                    <input name="_User__avatar" onChange={onEditProfileChange} type="text"/>
                 </div>
 
                 <div className="editprofile-detail-block">

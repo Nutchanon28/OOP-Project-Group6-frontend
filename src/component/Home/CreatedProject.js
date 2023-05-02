@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../../css/Home/CreatedProject.css";
 import styled from 'styled-components';
 import DataContext from '../../context/DataContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CreatedProjectImage = styled.div`
     position: absolute;
@@ -20,12 +20,14 @@ function CreatedProject() {
     const {projectId, setProjectId} = useContext(DataContext)
     const {isEdit, setIsEdit} = useContext(DataContext)
     const [myProject, setMyproject] = useState([])
+    const [myLaunchedProjects, setMyLaunchedProjects] = useState([])
     const navigate = useNavigate();
 
     async function getMyProject() {
         const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
         const responseJson = await response.json()
-        setMyproject(responseJson)
+        setMyproject(responseJson.my_created_projects)
+        setMyLaunchedProjects(responseJson.my_launched_projects)
         console.log(responseJson)
     }
 
@@ -89,6 +91,26 @@ function CreatedProject() {
         )
     })
 
+    const myLaunchedProjectElements = myLaunchedProjects.map((project) => {
+        return (
+            <div key={project.id} className='created-project-element'>
+                <div className='created-project-image'>
+                    <CreatedProjectImage url={project._Project__project_image}>
+
+                    </CreatedProjectImage>
+                </div>
+                <div className='created-project-name'>
+                    {project._Project__project_name}
+                </div>
+                <Link to="/other/add_update" onClick={() => setProjectId(project.id)}>
+                    <div className='add-update-status'>
+                        AddUpdate
+                    </div>
+                </Link>
+            </div>
+        )
+    })
+
     return (
         <div className='created-project'>
             <div className='created-project-container'>
@@ -111,6 +133,7 @@ function CreatedProject() {
                     </div>
                     <div className='created-project-list'>
                         {myProjectElements}
+                        {myLaunchedProjectElements}
                     </div>
                 </div>
             </div>

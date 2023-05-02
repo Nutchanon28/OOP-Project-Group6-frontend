@@ -19,7 +19,8 @@ const Header = () => {
       `http://127.0.0.1:8000/get_my_project/${userId}`
     );
     const responseJson = await response.json();
-    setMyProject(responseJson);
+    const newProject = [...responseJson.my_launched_projects, ...responseJson.my_created_projects]
+    setMyProject(newProject);
   }
 
   function toggleProfileClick() {
@@ -135,9 +136,9 @@ const Header = () => {
         </div>
         <div className="section-menu-tab">
           <p>CREATED PROJECTS</p>
-          {myProjectElements}
+          {/* {myProjectElements} */}
           <Link to="created-project">
-            <p>view all</p>
+            <p>view my prejects</p>
           </Link>
         </div>
       </div>

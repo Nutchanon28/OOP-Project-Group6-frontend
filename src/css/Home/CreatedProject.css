@@ -99,3 +99,15 @@
     overflow: hidden;
     text-overflow: ellipsis; 
 }
+
+.add-update-status {
+    padding: 12px 18px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 360px;
+}
+
+.add-update-status:hover {
+    color: #009e74;
+    cursor: pointer;
+}

@@ -12,7 +12,7 @@ const ProjectDetail = ({
   return (
     <div className="project-detail">
       <div className="project-con">
-        <div className="project-container">
+        <div className="the-project-container">
           <div className="project-image">
             <img src={image} alt="project" />
           </div>
