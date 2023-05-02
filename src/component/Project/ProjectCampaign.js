@@ -19,6 +19,7 @@ const ProjectCampaign = ({
 }) => {
   const { projectPage, userId, projectId } = useContext(DataContext);
   const [comment, setComment] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +36,15 @@ const ProjectCampaign = ({
       setComment("");
     }
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get(`http://127.0.0.1:8000/view_user/${userId}`);
+      setAvatar(response.data.avatar);
+    }
+
+    getUser();
+  })
 
   return (
     <div className="project-campaign">
@@ -162,7 +172,7 @@ const ProjectCampaign = ({
                       <div className="comment" key={comment.sending_time}>
                         <div className="writer">
                           <img
-                            src="https://i.ibb.co/1bpbQRn/jermaSus.webp"
+                            src={avatar}
                             alt="avatar"
                           />
                           <div className="writer-detail">
