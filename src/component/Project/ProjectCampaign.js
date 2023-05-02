@@ -69,9 +69,9 @@ const ProjectCampaign = ({
                     <p>loading</p>
                   )}
                 </div>
-                {/* <div className="reward-list">
-              <Reward />
-            </div> */}
+                        {/* <div className="reward-list">
+                      <Reward />
+                    </div> */}
                 {rewards ? (
                   <>
                     <div

@@ -28,3 +28,9 @@
     font-size: 14px;
     font-weight: lighter;
 }
+
+.main-project-image {
+    position: relative;
+    width: 640px;
+    height: 360px;
+}

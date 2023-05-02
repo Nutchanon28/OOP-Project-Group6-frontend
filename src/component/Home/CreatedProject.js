@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../../css/Home/CreatedProject.css";
 import styled from 'styled-components';
 import DataContext from '../../context/DataContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CreatedProjectImage = styled.div`
     position: absolute;
@@ -20,20 +20,52 @@ function CreatedProject() {
     const {projectId, setProjectId} = useContext(DataContext)
     const {isEdit, setIsEdit} = useContext(DataContext)
     const [myProject, setMyproject] = useState([])
+    const [myLaunchedProjects, setMyLaunchedProjects] = useState([])
     const navigate = useNavigate();
 
-    useEffect(() => {
-        async function getMyProject() {
-            const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
-            const responseJson = await response.json()
-            setMyproject(responseJson)
-            console.log(responseJson)
+    async function getMyProject() {
+        const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
+        const responseJson = await response.json()
+        setMyproject(responseJson.my_created_projects)
+        setMyLaunchedProjects(responseJson.my_launched_projects)
+        console.log(responseJson)
+    }
+
+    function canLaunch(project){
+        if(!!project._Project__credit_card) {
+            return true;
         }
+        return false;
+    }
+
+    async function launchProject(theId) {
+        await fetch(`http://127.0.0.1:8000/launch_project?id=${theId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify()
+          })
+        console.log(`Launch project id: ${theId}`)
+        getMyProject()
+    }
+
+    useEffect(() => {
         getMyProject()
     }, [])
 
 
     const myProjectElements = myProject.map((project) => {
+        let launchTag = null
+        if(!!project._Project__credit_card) {
+            launchTag = 
+            <div 
+                className='launch-project-status'
+                onClick={() => {
+                    launchProject(project.id)
+                }}
+            >
+                Launch this project
+            </div> 
+        }
         return (
             <div key={project.id} className='created-project-element'>
                 <div className='created-project-image'>
@@ -41,9 +73,10 @@ function CreatedProject() {
 
                     </CreatedProjectImage>
                 </div>
-                <div>
+                <div className='created-project-name'>
                     {project._Project__project_name}
                 </div>
+                {launchTag}
                 <div 
                     className='created-project-status' 
                     onClick={() => {
@@ -54,6 +87,26 @@ function CreatedProject() {
                 >
                     Continue editing
                 </div>
+            </div>
+        )
+    })
+
+    const myLaunchedProjectElements = myLaunchedProjects.map((project) => {
+        return (
+            <div key={project.id} className='created-project-element'>
+                <div className='created-project-image'>
+                    <CreatedProjectImage url={project._Project__project_image}>
+
+                    </CreatedProjectImage>
+                </div>
+                <div className='created-project-name'>
+                    {project._Project__project_name}
+                </div>
+                <Link to="/other/add_update" onClick={() => setProjectId(project.id)}>
+                    <div className='add-update-status'>
+                        AddUpdate
+                    </div>
+                </Link>
             </div>
         )
     })
@@ -80,6 +133,7 @@ function CreatedProject() {
                     </div>
                     <div className='created-project-list'>
                         {myProjectElements}
+                        {myLaunchedProjectElements}
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ const Reward = ({ reward }) => {
             <p>INCLUDES:</p>
             <ul>
               {reward.reward_include.map((included) => {
-                return <li>{included}</li>
+                return <li>{included.quantity}x {included.name}</li>
               })}
             </ul>
           </div>

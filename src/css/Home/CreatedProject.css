@@ -71,9 +71,43 @@
     right: 0;
 }
 
+.created-project-status:hover {
+    color: #009e74;
+    cursor: pointer; 
+}
+
 .created-project-image {
     position: relative;
     width: 160px;
     height: 90px;
     margin-right: 18px;
+}
+
+.launch-project-status {
+    padding: 12px 18px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 160px;
+}
+.launch-project-status:hover {
+    color: #009e74;
+    cursor: pointer;
+}
+
+.created-project-name {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.add-update-status {
+    padding: 12px 18px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 360px;
+}
+
+.add-update-status:hover {
+    color: #009e74;
+    cursor: pointer;
 }

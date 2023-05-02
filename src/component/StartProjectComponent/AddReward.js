@@ -230,7 +230,7 @@ function AddReward() {
 
     useEffect(() => {
         async function getProject() {
-            const response = await axios.get(`http://127.0.0.1:8000/view_project/${projectId}`)
+            const response = await axios.get(`http://127.0.0.1:8000/get_project/${projectId}`)
             const data = await response.data
             setProject(data.project_detail)
         }

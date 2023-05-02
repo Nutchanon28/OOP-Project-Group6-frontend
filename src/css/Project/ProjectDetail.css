@@ -10,7 +10,7 @@
   color: #656969;
 }
 
-.project-container {
+.the-project-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

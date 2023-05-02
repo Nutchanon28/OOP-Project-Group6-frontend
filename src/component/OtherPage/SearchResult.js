@@ -61,7 +61,7 @@ function SearchResult() {
                 <div className="project">
                   <img className="project-picture" src={searchedProject.project_detail.image}></img>
                   <div className="project-info">
-                    <Link className="project-name">{searchedProject.project_detail.name}</Link>
+                    <Link to={`..//project/${searchedProject.project_detail.id}`} className="project-name">{searchedProject.project_detail.name}</Link>
                     <p className="description">{searchedProject.project_detail.detail}</p>
                     <p className="editor">By {searchedProject.creator_detail.name}</p>
                     <div className="percentage">

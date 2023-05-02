@@ -12,7 +12,7 @@ function SetFunding() {
     const [edit, setEdit] = useState(false)
 
     async function getProject() {
-        const response = await fetch(`http://127.0.0.1:8000/view_project/${projectId}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_project/${projectId}`)
         const responseJson = await response.json()
         setProject(responseJson.project_detail)
         console.log(responseJson)
@@ -27,6 +27,9 @@ function SetFunding() {
 
         if(project.pledge_goal == "") {
             project.pledge_goal = 1;
+        }
+        else {
+            project.pledge_goal = parseInt(project.pledge_goal)
         }
         await fetch(`http://127.0.0.1:8000/edit_project/${projectId}`, {
             method: "PUT",

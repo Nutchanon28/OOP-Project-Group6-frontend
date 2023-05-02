@@ -20,6 +20,7 @@ const Header = () => {
     );
     const responseJson = await response.json();
     setMyProject(responseJson);
+
   }
 
   function toggleProfileClick() {
@@ -89,7 +90,7 @@ const Header = () => {
       );
     }
   }
-
+  
   return (
     <div className="header">
       <div className="container">
@@ -136,9 +137,9 @@ const Header = () => {
         </div>
         <div className="section-menu-tab">
           <p>CREATED PROJECTS</p>
-          {myProjectElements}
+          {/* {myProjectElements} */}
           <Link to="created-project">
-            <p>view all</p>
+            <p>view my prejects</p>
           </Link>
         </div>
       </div>
