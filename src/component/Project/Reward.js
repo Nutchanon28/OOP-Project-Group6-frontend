@@ -37,7 +37,7 @@ const Reward = ({ reward }) => {
             <p>ESTIMATED DELIVERY</p>
             <p>
               This reward is estimated to be delivered by this date:{" "}
-              {reward.reward_shipping._RewardShipping__estimated_delivery}. This
+              {reward.reward_shipping._RewardShipping__estimated_delivery.month + "/" + reward.reward_shipping._RewardShipping__estimated_delivery.year}. This
               reward ships to{" "}
               {reward.reward_shipping._RewardShipping__ships_to.join(", ")}
             </p>
