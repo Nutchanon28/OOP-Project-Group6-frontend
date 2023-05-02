@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../css/OtherPage/SearchResult.css";
 
@@ -58,14 +59,14 @@ function SearchResult() {
               console.log(searchedProject)
               return (
                 <div className="project">
-                  <div className="project-picture"></div>
+                  <img className="project-picture" src={searchedProject.project_detail.image}></img>
                   <div className="project-info">
-                    <p className="project-name">{searchedProject.project_detail.name}</p>
+                    <Link className="project-name">{searchedProject.project_detail.name}</Link>
                     <p className="description">{searchedProject.project_detail.detail}</p>
                     <p className="editor">By {searchedProject.creator_detail.name}</p>
                     <div className="percentage">
-                      <p className="grayBox"> </p>
-                      <p className="greenBox"> </p>
+                      <p className="grayBox" style={{width:300}}> </p>
+                      <p className="greenBox" style={{width:((searchedProject.project_detail.pledge_received/searchedProject.project_detail.pledge_goal))*300}}> </p>
                     </div>
                     <p className="pledge-goal">{searchedProject.project_detail.pledge_goal} Baht pledged</p>
                     <p className="pledge-received">{(searchedProject.project_detail.pledge_received/searchedProject.project_detail.pledge_goal)*100}% funded</p>

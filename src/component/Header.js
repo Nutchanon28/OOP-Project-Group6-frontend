@@ -89,41 +89,56 @@ const Header = () => {
         }
     }
 
-    return (
-        <div className="header">
-            <div className='container'>
-                <div className='header-con'>
-                    <ul className='left-menu'>
-                        <li><a href="#">Discover</a></li>
-                        <li onClick={onStartProjectCLick}><Link to={"start-project"}>Start a project</Link></li>
-                    </ul>
-                    <div className='logo'>
-                    <Link to=""><h2>KICKSTARTER</h2></Link>
-                    </div>
-                    <ul className='right-menu'>
-                        <li><a href="#">Search <HiSearch className='search-icon'/></a></li>
-                        <li>
-                            <BiUserCircle 
-                                className='user-icon'
-                                onClick={toggleProfileClick}
-                            />
-                        </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div className={`menu-tab + ${profileClick ? "" : "hidden"}`}>
-                <div className='section-menu-tab'>
-                    <p>YOUR ACCOUNT</p>
-                    <p>Profile</p>
-                    <p>Settings</p>
-                </div>
-                <div className="section-menu-tab">
-                    <p>CREATED PROJECTS</p>
-                    {myProjectElements}
-                    <Link to="created-project"><p>view all</p></Link>
-                </div>
-            </div>
+  return (
+    <div className="header">
+      <div className="container">
+        <div className="header-con">
+          <ul className="left-menu">
+            <li>
+              <a href="#">Discover</a>
+            </li>
+            <li onClick={onStartProjectCLick}>
+              <Link to={"start-project"}>Start a project</Link>
+            </li>
+          </ul>
+          <div className="logo">
+            <Link to="">
+              <h2>KICKSTARTER</h2>
+            </Link>
+          </div>
+          <ul className="right-menu">
+            <li>
+              <Link to = "other/search_result">
+                Search <HiSearch className="search-icon" />
+              </Link>
+            </li>
+            <li>
+              <a href="#">
+                <BiUserCircle
+                  className="user-icon"
+                  onClick={toggleProfileClick}
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className={`menu-tab + ${profileClick ? "" : "hidden"}`}>
+        <div className="section-menu-tab">
+          <p>YOUR ACCOUNT</p>
+          <p>
+            <Link to="/other/view_profile">Profile</Link>
+          </p>
+          <p>
+            <Link to="setting">Settings</Link>
+          </p>
+        </div>
+        <div className="section-menu-tab">
+          <p>CREATED PROJECTS</p>
+          {myProjectElements}
+          <Link to="created-project">
+            <p>view all</p>
+          </Link>
         </div>
   );
 };
