@@ -15,7 +15,7 @@ function SettingNotifications() {
   useEffect(() => {
     const getProjects = async () => {
       const response = await axios.get(
-        `http://127.0.0.1:8000/view_notifications/${3}`
+        `http://127.0.0.1:8000/view_notifications/${userId}`
       );
       console.log(response);
       const backedNotifications = response.data.filter(
@@ -38,15 +38,18 @@ function SettingNotifications() {
     <div className="settingnotifications">
       <div className="settingnotifications-container">
         <div className="notifications-detail-block">
-          <p className="notification-type">Projects you've launched</p>
-          <div className="notification-element">
-            <BiCommentDetail />
-            <p>New backings</p>
+          <p className="notification-type">Projects you've backed</p>
+          <div className="notification-boxx">
             {backedNotifications.map((notification) => {
               return (
                 <>
-                  <p>{notification._Notification__title}</p>
-                  <p>{notification._Notification__detail}</p>
+                  <div className="each_notification">
+                    <BiCommentDetail />
+                    <div className="notification-msg">
+                      <p className="title">{notification._Notification__title==="Backing"?"you have backed a project":"have update on project you backed"}</p>
+                      <p className="detail">{notification._Notification__detail}</p>
+                    </div>
+                  </div>
                 </>
               );
             })}
@@ -54,15 +57,18 @@ function SettingNotifications() {
         </div>
 
         <div className="notifications-detail-block">
-          <p className="notification-type">Projects you've backed</p>
-          <div className="notification-element">
-            <MdOutlineNotificationsActive />
-            <p>Project updates</p>
+          <p className="notification-type">Projects you've launched</p>
+          <div className="notification-boxx">
             {receivedNotifications.map((notification) => {
               return (
                 <>
-                  <p>{notification._Notification__title}</p>
-                  <p>{notification._Notification__detail}</p>
+                  <div className="each_notification">
+                    <MdOutlineNotificationsActive />
+                    <div className="notification-msg">
+                      <p className="title">you have receive pledge from Backer</p>
+                      <p className="detail">{notification._Notification__detail}</p>
+                    </div>
+                  </div>
                 </>
               );
             })}
