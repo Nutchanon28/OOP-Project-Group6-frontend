@@ -35,7 +35,7 @@ function App() {
               />
               <Route path="backing" element={<PledgeSummary />} />
               <Route path="setting/*" element={<SettingPage />} />
-              <Route path="other" element={<OtherPage />} />
+              <Route path="other/*" element={<OtherPage />} />
               <Route path="/created-project/*" element={<CreatedProject />} />
             </Route>
             <Route path="/start-project/*" element={<ProjectCreatingLayout />} >
