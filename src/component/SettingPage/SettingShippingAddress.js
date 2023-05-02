@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import DataContext from '../../context/DataContext'
 import '../../css/SettingPage/SettingShippingAddress.css'
 
 function SettingShippingAddress(){
@@ -12,6 +13,8 @@ function SettingShippingAddress(){
     })
 
     const [myShippingAddress, setMyShippingAddress] = useState([])
+    const {userId} = useContext(DataContext)
+
 
     function onShippingAddressChange(event){
         const{name, value} = event.target
@@ -25,7 +28,7 @@ function SettingShippingAddress(){
     }
 
     async function getMyShippingAddress(){
-        const response = await fetch(`http://127.0.0.1:8000/get_shipping_address?user_id=${1}`) 
+        const response = await fetch(`http://127.0.0.1:8000/get_shipping_address?user_id=${userId}`) 
         const responsejson = await response.json()
         setMyShippingAddress(responsejson)
         console.log(responsejson)
@@ -53,7 +56,7 @@ function SettingShippingAddress(){
             city:shippingAddress._Address__city,
             phone_number:shippingAddress._Address__phone_number
         }
-        await fetch(`http://127.0.0.1:8000/add_shipping_address?user_id=${1}`,{
+        await fetch(`http://127.0.0.1:8000/add_shipping_address?user_id=${userId}`,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newAddress)
@@ -72,7 +75,7 @@ function SettingShippingAddress(){
 
     async function onShippingAddressDelete(shippingAddressID){
         console.log(shippingAddressID)
-        await fetch(`http://127.0.0.1:8000/delete_address?user_id=${1}&address_id=${shippingAddressID}`,{
+        await fetch(`http://127.0.0.1:8000/delete_address?user_id=${userId}&address_id=${shippingAddressID}`,{
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify()

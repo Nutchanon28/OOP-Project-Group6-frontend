@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import DataContext from '../../context/DataContext'
 import '../../css/SettingPage/SettingEditProfile.css'
 
 function SettingEditProfile(){
@@ -9,6 +10,8 @@ function SettingEditProfile(){
         _User__location:"",
         _User__website:""
     })
+
+    const {userId} = useContext(DataContext)
 
     function onEditProfileChange(event){
         const{name, value} = event.target
@@ -22,7 +25,7 @@ function SettingEditProfile(){
     }
 
     async function getMyEditProfile(){
-        const response = await fetch(`http://127.0.0.1:8000/get_user?user_id=${1}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_user?user_id=${userId}`)
         const responsejson = await response.json()
         setEditProfile(responsejson)
         console.log(responsejson)
@@ -44,7 +47,7 @@ function SettingEditProfile(){
             location:editProfile._User__location,
             website:editProfile._User__website
         }
-        await fetch(`http://127.0.0.1:8000/add_profile?user_id=${1}`, {
+        await fetch(`http://127.0.0.1:8000/add_profile?user_id=${userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newEditProfile)

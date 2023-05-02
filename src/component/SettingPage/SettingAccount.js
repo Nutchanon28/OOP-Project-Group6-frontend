@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import DataContext from '../../context/DataContext'
 import '../../css/SettingPage/SettingAccount.css'
 
 function SettingAccount(){
@@ -11,6 +12,7 @@ function SettingAccount(){
         _User__password:""
     })
 
+    const {userId} = useContext(DataContext)
 
     function onchangepasswordclick(){
         setButtonState(!buttonState)
@@ -27,7 +29,7 @@ function SettingAccount(){
     }
 
     async function getMyAccount(){
-        const response = await fetch(`http://127.0.0.1:8000/get_user?user_id=${1}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_user?user_id=${userId}`)
         const responsejson = await response.json()
         setAccount(responsejson)
         console.log(responsejson)
@@ -50,7 +52,7 @@ function SettingAccount(){
             new_password:newPassword,
             old_password:oldPassword
         }
-        await fetch(`http://127.0.0.1:8000/add_account?user_id=${1}`, {
+        await fetch(`http://127.0.0.1:8000/add_account?user_id=${userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newAccount)

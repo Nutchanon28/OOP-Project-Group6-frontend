@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import DataContext from '../../context/DataContext'
 import '../../css/SettingPage/SettingPaymentMethods.css'
 
 function SettingPaymentMethods(){
@@ -10,6 +11,7 @@ function SettingPaymentMethods(){
     })
 
     const [myPaymentMethod, setMyPaymentMethod] = useState([])
+    const {userId} = useContext(DataContext)
 
     function onPaymentMethodChange(event){
         const{name,value}=event.target
@@ -23,7 +25,7 @@ function SettingPaymentMethods(){
     }
 
     async function getMyPaymentMethod(){
-        const response = await fetch(`http://127.0.0.1:8000/get_payment_method?user_id=${1}`)
+        const response = await fetch(`http://127.0.0.1:8000/get_payment_method?user_id=${userId}`)
         const responsejson = await response.json()
         setMyPaymentMethod(responsejson)
         console.log(responsejson)
@@ -45,7 +47,7 @@ function SettingPaymentMethods(){
             cvc:paymentMethod._CreditCardTransaction__cvc,
             country:paymentMethod._CreditCardTransaction__country
         }
-        await fetch(`http://127.0.0.1:8000/add_payment_method?user_id=${1}`,{
+        await fetch(`http://127.0.0.1:8000/add_payment_method?user_id=${userId}`,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newPayment)
@@ -62,7 +64,7 @@ function SettingPaymentMethods(){
 
     async function onPaymentMethodDelete(paymentMethodID){
         console.log(paymentMethodID)
-        await fetch(`http://127.0.0.1:8000/delete_payment_method?user_id=${1}&creditcard_id=${paymentMethodID}`,{
+        await fetch(`http://127.0.0.1:8000/delete_payment_method?user_id=${userId}&creditcard_id=${paymentMethodID}`,{
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify()
