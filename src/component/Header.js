@@ -1,24 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
 import "../css/Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
 
 const Header = () => {
-  const { projectId, setProjectId } = useContext(DataContext);
-  const { userId, setUserId } = useContext(DataContext);
-  const [profileClick, setProfileCLick] = useState(false);
-  const [myProject, setMyProject] = useState([]);
-  const [newProjectId, setNewProjectId] = useState(1);
+    const { projectId, setProjectId } = useContext(DataContext);
+    const { userId, setUserId } = useContext(DataContext);
+    const [profileClick, setProfileCLick] = useState(false);
+    const [myProject, setMyProject] = useState([]);
+    const [newProjectId, setNewProjectId] = useState(1);
+    const { isEdit, setIsEdit} = useContext(DataContext)
+    const navigate = useNavigate()
 
-  async function getMyProject() {
-    const response = await fetch(
-      `http://127.0.0.1:8000/view_my_project/${userId}`
-    );
-    const responseJson = await response.json();
-    setMyProject(responseJson);
-  }
+    async function getMyProject() {
+        const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
+        const responseJson = await response.json()
+        setMyProject(responseJson)
+    }
 
   function toggleProfileClick() {
     setProfileCLick(!profileClick);
@@ -54,31 +54,40 @@ const Header = () => {
       body: JSON.stringify(newProject),
     });
 
-    const response = await fetch(`http://127.0.0.1:8000/get_last_project`);
-    const responseJson = await response.json();
-    setNewProjectId(responseJson.id);
-    console.log(responseJson);
-    setProjectId(responseJson.id);
-    console.log(`Your project id is ${responseJson.id}`);
-  }
+        const response = await fetch(`http://127.0.0.1:8000/get_last_project`)
+        const responseJson = await response.json()
+        setNewProjectId(responseJson.id)
+        console.log(responseJson)
+        setProjectId(responseJson.id)
+        console.log(`Your project id is ${responseJson.id}`)
+        setIsEdit(false)
+    }
 
   useEffect(() => {
     getMyProject();
     console.log(myProject);
   }, [profileClick]);
 
-  let myProjectElements = null;
-  if (myProject.length) {
-    myProjectElements = myProject.map((project) => {
-      return (
-        <p>
-          <Link to={`start-project/${project.id}`}>
-            {project._Project__project_name}
-          </Link>
-        </p>
-      );
-    });
-  }
+    let myProjectElements = []
+    if(myProject.length) {
+        let len = myProject.length
+        for(let i = len - 1; i >= len - 5 && i >= 0; i--) {
+            myProjectElements.push(
+                (
+                    <p  className="to-my-project"
+                        key={myProject[i].id}
+                        onClick={() => {
+                            setIsEdit(true)
+                            setProjectId(myProject[i].id)
+                            navigate("/start-project")
+                        }}
+                    >
+                        {myProject[i]._Project__project_name}
+                    </p> 
+                )
+            )
+        }
+    }
 
   return (
     <div className="header">
@@ -131,8 +140,6 @@ const Header = () => {
             <p>view all</p>
           </Link>
         </div>
-      </div>
-    </div>
   );
 };
 

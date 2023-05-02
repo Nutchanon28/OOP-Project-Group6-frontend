@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../../css/Home/CreatedProject.css";
 import styled from 'styled-components';
+import DataContext from '../../context/DataContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreatedProjectImage = styled.div`
     position: absolute;
@@ -8,12 +10,54 @@ const CreatedProjectImage = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    background: url(${props => props.url});
+    background-image: url(${props => props.url});
     background-size: cover;
+    background-position: center;
 `
 
 function CreatedProject() {
+    const {userId, setUserId} = useContext(DataContext)
+    const {projectId, setProjectId} = useContext(DataContext)
+    const {isEdit, setIsEdit} = useContext(DataContext)
+    const [myProject, setMyproject] = useState([])
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function getMyProject() {
+            const response = await fetch(`http://127.0.0.1:8000/get_my_project/${userId}`)
+            const responseJson = await response.json()
+            setMyproject(responseJson)
+            console.log(responseJson)
+        }
+        getMyProject()
+    }, [])
+
+
+    const myProjectElements = myProject.map((project) => {
+        return (
+            <div key={project.id} className='created-project-element'>
+                <div className='created-project-image'>
+                    <CreatedProjectImage url={project._Project__project_image}>
+
+                    </CreatedProjectImage>
+                </div>
+                <div>
+                    {project._Project__project_name}
+                </div>
+                <div 
+                    className='created-project-status' 
+                    onClick={() => {
+                        setProjectId(project.id)
+                        setIsEdit(true)
+                        navigate(`/start-project`)
+                    }}
+                >
+                    Continue editing
+                </div>
+            </div>
+        )
+    })
+
     return (
         <div className='created-project'>
             <div className='created-project-container'>
@@ -35,34 +79,7 @@ function CreatedProject() {
                         Started
                     </div>
                     <div className='created-project-list'>
-                        <div className='created-project-element'>
-                            <div className='created-project-image'>
-                                <CreatedProjectImage url={"https://via.placeholder.com/150/92c952"}>
-
-                                </CreatedProjectImage>
-                            </div>
-                            <div>
-                                project name
-                            </div>
-                            <div className='created-project-status'>
-                                Continue editing
-                            </div>
-                        </div>
-                        <div className='created-project-element'>
-                            <div className='created-project-image'>
-                                
-                                </div>
-                            wowwwwwww
-                        </div>
-                        <div className='created-project-element'>
-                            <div className='created-project-image'>
-                                
-                            </div>
-                            wowwwwwww
-                        </div>
-                        <div className='created-project-element'>
-                            wowwwwwww
-                        </div>
+                        {myProjectElements}
                     </div>
                 </div>
             </div>

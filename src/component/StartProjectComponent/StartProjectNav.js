@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../css/StartProjectComponent/StartProjectNav.css'
 import { NavLink, useParams } from 'react-router-dom'
 import axios from "axios";
+import DataContext from '../../context/DataContext';
 
 
 
 function StartProjectNav(props) {
 
-    const { projectId, setProjectId } = props
+    const { projectId, setProjectId } = useContext(DataContext)
 
     function getNavClass(navLinkProps) {
         let navClass = 'app-header-item';
@@ -15,19 +16,19 @@ function StartProjectNav(props) {
         return navClass;
       }
 
-    useEffect(() => {
-        const getProject = async () => {
-          const response = await axios.get(
-            `http://127.0.0.1:8000/get_last_project`
-          );
-          console.log(response.data);
-          setProjectId(response.data.id);
-        };
-        getProject();
+    // useEffect(() => {
+    //     const getProject = async () => {
+    //       const response = await axios.get(
+    //         `http://127.0.0.1:8000/get_last_project`
+    //       );
+    //       console.log(response.data);
+    //       setProjectId(response.data.id);
+    //     };
+    //     getProject();
     
-        console.log("this won't cause infinite loop");
-        //setHasCommented(false);
-      }, [projectId]);
+    //     console.log("this won't cause infinite loop");
+    //     //setHasCommented(false);
+    //   }, [projectId]);
 
     return (
         <div className='start-project-nav'>

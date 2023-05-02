@@ -11,6 +11,9 @@ export const DataProvider = ({ children }) => {
   const [rewardId, setRewardId] = useState(
     localStorage.getItem("rewardId") || 0
   );
+  const [isEdit, setIsEdit] = useState(
+    localStorage.getItem("isEdit") || false
+  );
   const [projectPage, setProjectPage] = useState("Campaign");
 
   // const [recommendedProjects, setRecommendedProjects] = useState([]);
@@ -33,6 +36,9 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("rewardId", rewardId);
   }, [rewardId]);
+  useEffect(() => {
+    localStorage.setItem("isEdit", isEdit);
+  }, [rewardId]);
 
   return (
     <DataContext.Provider
@@ -45,6 +51,8 @@ export const DataProvider = ({ children }) => {
         setRewardId,
         projectPage,
         setProjectPage,
+        isEdit,
+        setIsEdit
       }}
     >
       {children}

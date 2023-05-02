@@ -14,12 +14,17 @@ const Reward = ({ reward }) => {
           </div>
           <div className="reward-name">{reward.reward_name}</div>
           <div className="reward-description">{reward.reward_detail}</div>
+          {console.log(reward.reward_include)}
+          {reward.reward_include.length ? (
           <div className="reward-include">
             <p>INCLUDES:</p>
             <ul>
-              <li>{reward.reward_include}</li>
+              {reward.reward_include.map((included) => {
+                return <li>{included}</li>
+              })}
             </ul>
           </div>
+          ) : ""}
           <div className="reward-delivery">
             <p>ESTIMATED DELIVERY</p>
             <p>
