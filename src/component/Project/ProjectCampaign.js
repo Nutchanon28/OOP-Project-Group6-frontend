@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../../css/Project/ProjectCampaign.css";
 import "../../css/Project/Reward.css";
 import Reward from "./Reward";
@@ -19,6 +19,7 @@ const ProjectCampaign = ({
 }) => {
   const { projectPage, userId, projectId } = useContext(DataContext);
   const [comment, setComment] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +36,17 @@ const ProjectCampaign = ({
       setComment("");
     }
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/view_user?userId=${userId}`
+      );
+      console.log(response);
+      setAvatar(response.data?.avatar);
+    };
+    getUser();
+  }, [userId]);
 
   return (
     <div className="project-campaign">
@@ -69,7 +81,7 @@ const ProjectCampaign = ({
                     <p>loading</p>
                   )}
                 </div>
-                        {/* <div className="reward-list">
+                {/* <div className="reward-list">
                       <Reward />
                     </div> */}
                 {rewards ? (
@@ -162,7 +174,7 @@ const ProjectCampaign = ({
                       <div className="comment" key={comment.sending_time}>
                         <div className="writer">
                           <img
-                            src="https://i.ibb.co/1bpbQRn/jermaSus.webp"
+                            src={avatar}
                             alt="avatar"
                           />
                           <div className="writer-detail">
