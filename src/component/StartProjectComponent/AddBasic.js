@@ -181,7 +181,7 @@ function AddBasic() {
                                 </div>
                                 <div className='right-element-basic'>
                                     <div className='category-basic'>
-                                        <p>Categogy</p>
+                                        <p>Category</p>
                                         <select
                                             name='category'
                                             value={project.category}
