@@ -3,7 +3,7 @@ import ProjectBox from "./ProjectBox";
 import "../../css/Home/RecommendedProject.css";
 
 const RecommendedProject = ({ recommendedProjects }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
 
   return (
     <div className="recommended-project">
@@ -17,26 +17,40 @@ const RecommendedProject = ({ recommendedProjects }) => {
             })}
         </div>
         <div className="page-bar">
-          <a
+        <a
             onClick={() => {
-              setCurrentPage(1);
+              setCurrentPage(currentPage - 5);
             }}
           >
-            1
+            {currentPage - 5 <= 0 ?  "" : "<<"}
           </a>
           <a
             onClick={() => {
-              setCurrentPage(2);
+              setCurrentPage(currentPage - 1);
             }}
           >
-            2
+            {currentPage - 1 === 0 ? "" : currentPage - 1}
           </a>
           <a
             onClick={() => {
-              setCurrentPage(3);
+              setCurrentPage(currentPage);
             }}
           >
-            3
+            {currentPage}
+          </a>
+          <a
+            onClick={() => {
+              setCurrentPage(currentPage + 1);
+            }}
+          >
+            {currentPage + 1 > parseInt(recommendedProjects.length/3) + 1 ?  "" : currentPage + 1}
+          </a>
+          <a
+            onClick={() => {
+              setCurrentPage(currentPage + 5);
+            }}
+          >
+            {currentPage + 5 > parseInt(recommendedProjects.length/3) + 1 ?  "" : ">>"}
           </a>
         </div>
       </div>
