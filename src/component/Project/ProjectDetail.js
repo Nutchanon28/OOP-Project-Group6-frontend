@@ -1,5 +1,18 @@
 import React from "react";
 import "../../css/Project/ProjectDetail.css";
+import styled from "styled-components";
+
+const Image = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: url(${props => props.url});
+    background-size: cover;
+    background-position: center;
+`
 
 const ProjectDetail = ({
   image,
@@ -14,7 +27,9 @@ const ProjectDetail = ({
       <div className="project-con">
         <div className="the-project-container">
           <div className="project-image">
-            <img src={image} alt="project" />
+            <Image url={image}>
+
+            </Image>
           </div>
           <div className="right-section">
             {

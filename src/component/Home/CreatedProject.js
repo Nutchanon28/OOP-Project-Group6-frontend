@@ -31,11 +31,14 @@ function CreatedProject() {
         console.log(responseJson)
     }
 
-    function canLaunch(project){
-        if(!!project._Project__credit_card) {
-            return true;
-        }
-        return false;
+    async function onDeleteProjectClick(theId) {
+        await fetch(`http://127.0.0.1:8000/delete_project/${theId}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify()
+          })
+          console.log(`Delete project with id : ${theId}`)
+          getMyProject()
     }
 
     async function launchProject(theId) {
@@ -64,7 +67,8 @@ function CreatedProject() {
                 }}
             >
                 Launch this project
-            </div> 
+            </div>
+             
         }
         return (
             <div key={project.id} className='created-project-element'>
@@ -87,6 +91,9 @@ function CreatedProject() {
                 >
                     Continue editing
                 </div>
+                <div className='delete-project-status' onClick={() => onDeleteProjectClick(project.id)}>
+                    Delete this project
+                </div>
             </div>
         )
     })
@@ -102,11 +109,16 @@ function CreatedProject() {
                 <div className='created-project-name'>
                     {project._Project__project_name}
                 </div>
-                <Link to="/other/add_update" onClick={() => setProjectId(project.id)}>
-                    <div className='add-update-status'>
-                        AddUpdate
-                    </div>
-                </Link>
+                <div className='created-project-status'>
+                    <Link to="/other/add_update" onClick={() => setProjectId(project.id)}>
+                        <div className='some-decoration'>
+                            AddUpdate
+                        </div>
+                    </Link>
+                </div>
+                <div className='delete-project-status' onClick={() => onDeleteProjectClick(project.id)}>
+                    Delete ths project
+                </div>
             </div>
         )
     })

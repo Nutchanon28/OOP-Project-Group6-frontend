@@ -68,7 +68,7 @@
     padding: 12px 18px;
     justify-self: flex-end;
     position: absolute;
-    right: 0;
+    right: 160px;
 }
 
 .created-project-status:hover {
@@ -87,7 +87,7 @@
     padding: 12px 18px;
     justify-self: flex-end;
     position: absolute;
-    right: 160px;
+    right: 340px;
 }
 .launch-project-status:hover {
     color: #009e74;
@@ -109,5 +109,22 @@
 
 .add-update-status:hover {
     color: #009e74;
+    cursor: pointer;
+}
+
+.some-decoration:hover {
+    color: #009e74;
+    cursor: pointer;
+}
+
+.delete-project-status {
+    padding: 12px 18px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 0;
+}
+
+.delete-project-status:hover {
+    color: #FF0000;
     cursor: pointer;
 }

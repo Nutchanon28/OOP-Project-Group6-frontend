@@ -10,7 +10,7 @@ const Image = styled.div`
     left: 0;
     bottom: 0;
     width: 100%;
-    background: url(${props => props.url});
+    background-image: url(${props => props.url});
     background-size: cover;
     background-position: center;
 `

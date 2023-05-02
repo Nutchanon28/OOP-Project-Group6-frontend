@@ -19,6 +19,7 @@
 .project-image {
   width: 67.5%;
   margin-right: 36px;
+  position: relative;
   /* max-height: 500px; */
 }
 
