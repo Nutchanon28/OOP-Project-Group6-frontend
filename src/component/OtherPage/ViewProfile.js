@@ -85,7 +85,7 @@ function ViewProfile() {
                     <div className="project">
                       <img className="project-picture" src={backedProject.image}/>
                       <div className="project-info">
-                        <p className="project-name">{backedProject.name}</p>
+                        <Link className="project-name" to = {`..//project/${backedProject.id}`}>{backedProject.name}</Link>
                         <p className="description">{backedProject.detail}</p>
                         <p className="editor">By {backedProject.creator}</p>
                       </div>

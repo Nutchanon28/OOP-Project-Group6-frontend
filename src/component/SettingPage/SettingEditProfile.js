@@ -67,7 +67,7 @@ function SettingEditProfile(){
 
                 <div className="editprofile-detail-block">
                     <p>Avatar</p>
-                    <input name="_User__avatar" onChange={onEditProfileChange} type="text"/>
+                    <input name="_User__avatar" value={editProfile._User__avatar} onChange={onEditProfileChange} type="text"/>
                 </div>
 
                 <div className="editprofile-detail-block">
