@@ -27,8 +27,44 @@
     margin-bottom: 15px;
 }
 
-.notification-element{
+.notification-boxx{
+    display: flex;
+    flex-direction: column;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.each_notification{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    position: relative;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.notification-msg{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.notification-msg .title{
+    width: 100%;
+    text-align: left;   
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #282828;
+}
+
+.notification-msg .detail{
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    color: #777777;
 }

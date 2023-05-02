@@ -19,8 +19,8 @@ const Header = () => {
       `http://127.0.0.1:8000/get_my_project/${userId}`
     );
     const responseJson = await response.json();
-    const newProject = [...responseJson.my_launched_projects, ...responseJson.my_created_projects]
-    setMyProject(newProject);
+    setMyProject(responseJson);
+
   }
 
   function toggleProfileClick() {
@@ -90,6 +90,7 @@ const Header = () => {
       );
     }
   }
+  
   return (
     <div className="header">
       <div className="container">
