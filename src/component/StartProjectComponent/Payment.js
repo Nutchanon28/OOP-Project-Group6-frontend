@@ -24,8 +24,8 @@ function Payment() {
     }
 
 
-    function onCreditCardClick(idx) {
-        setPaymentIndex(idx)
+    function onCreditCardClick(theId) {
+        setPaymentIndex(theId)
         setCanSubmit(true)
         console.log(paymentIndex)
     }
@@ -35,7 +35,7 @@ function Payment() {
         if(!canSubmit) {
             return
         }
-        const payload = {idx: paymentIndex}
+        const payload = {id: paymentIndex}
         setCanSubmit(false)
         await fetch(`http://127.0.0.1:8000/edit_project/${projectId}/add_credit_card/${userId}`, {
             method: "PUT",
@@ -70,16 +70,16 @@ function Payment() {
         )
     }
     if(creditCards.length) {
-        myProjectCardElements = creditCards.map((card, idx) => {
+        myProjectCardElements = creditCards.map((card) => {
             return (
-                <div key={idx} className="saved-paymentmethod-detail-blockk"
-                    onClick={() => onCreditCardClick(idx)}
+                <div key={card.id} className="saved-paymentmethod-detail-blockk"
+                    onClick={() => onCreditCardClick(card.id)}
                 >
                     <p>{card._CreditCardTransaction__country}</p>
                     <p>{card._CreditCardTransaction__cvc}</p>
                     <p>{card._CreditCardTransaction__expiration}</p>
                     <p>{card._CreditCardTransaction__card_number}</p>
-                    <div className={paymentIndex == idx ? "is-check" : "hidden"}>
+                    <div className={paymentIndex == card.id ? "is-check" : "hidden"}>
                         <AiFillCheckCircle />
                     </div>
                 </div>
