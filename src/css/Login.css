@@ -17,7 +17,7 @@
   align-self: flex-start;
 }
 
-.registerForm input[type='text'],
+.registerForm input[type='email'],
 .registerForm input[type='password'],
 .registerForm textarea {
   font-family: 'Open Sans', sans-serif;

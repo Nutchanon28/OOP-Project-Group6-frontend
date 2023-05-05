@@ -83,12 +83,12 @@ const Login = ({ setHasLogin }) => {
         <label htmlFor="register">{isRegistering ? "Sign up" : "Log in"}</label>
         <input
           required
-          id="username"
-          type="text"
-          placeholder="username"
-          value={loginUser.username}
+          id="gmail"
+          type="email"
+          placeholder="gmail"
+          value={loginUser.gmail}
           onChange={(e) =>
-            setLoginUser(Object.assign(loginUser, { username: e.target.value }))
+            setLoginUser(Object.assign(loginUser, { gmail: e.target.value }))
           }
         />
         <input
