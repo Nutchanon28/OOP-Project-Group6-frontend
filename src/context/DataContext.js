@@ -4,16 +4,14 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || 0);
   const [projectId, setProjectId] = useState(
     localStorage.getItem("projectId") || 0
   );
   const [rewardId, setRewardId] = useState(
     localStorage.getItem("rewardId") || 0
   );
-  const [isEdit, setIsEdit] = useState(
-    localStorage.getItem("isEdit") || false
-  );
+  const [isEdit, setIsEdit] = useState(localStorage.getItem("isEdit") || false);
   const [projectPage, setProjectPage] = useState("Campaign");
 
   // const [recommendedProjects, setRecommendedProjects] = useState([]);
@@ -28,6 +26,10 @@ export const DataProvider = ({ children }) => {
   //   };
   //   getProjects();
   // }, []);
+
+  useEffect(() => {
+    localStorage.setItem("userId", userId);
+  }, [userId]);
 
   useEffect(() => {
     localStorage.setItem("projectId", projectId);
@@ -52,7 +54,7 @@ export const DataProvider = ({ children }) => {
         projectPage,
         setProjectPage,
         isEdit,
-        setIsEdit
+        setIsEdit,
       }}
     >
       {children}

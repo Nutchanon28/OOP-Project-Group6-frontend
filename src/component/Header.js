@@ -5,7 +5,7 @@ import { HiSearch } from "react-icons/hi";
 import { BiUserCircle } from "react-icons/bi";
 import DataContext from "../context/DataContext";
 
-const Header = () => {
+const Header = ({ setHasLogin }) => {
   const { projectId, setProjectId } = useContext(DataContext);
   const { userId, setUserId } = useContext(DataContext);
   const [profileClick, setProfileCLick] = useState(false);
@@ -20,7 +20,6 @@ const Header = () => {
     );
     const responseJson = await response.json();
     setMyProject(responseJson);
-
   }
 
   function toggleProfileClick() {
@@ -90,7 +89,7 @@ const Header = () => {
       );
     }
   }
-  
+
   return (
     <div className="header">
       <div className="container">
@@ -134,12 +133,15 @@ const Header = () => {
           <p>
             <Link to="setting">Settings</Link>
           </p>
+          <p onClick={() => setHasLogin(false)}>
+            <Link to="login">Log out</Link>
+          </p>
         </div>
         <div className="section-menu-tab">
           <p>CREATED PROJECTS</p>
           {/* {myProjectElements} */}
           <Link to="created-project">
-            <p>view my prejects</p>
+            <p>view my projects</p>
           </Link>
         </div>
       </div>

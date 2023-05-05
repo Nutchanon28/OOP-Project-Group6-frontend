@@ -13,40 +13,54 @@ import StartProjectHeader from "./component/StartProjectComponent/StartProjectHe
 import CreatedProject from "./component/Home/CreatedProject";
 import SettingPage from "./component/SettingPage/SettingPage";
 import Layout from "./component/Layout";
-import ProjectCreatingLayout from "./component/ProjectCreatingLayout"
+import ProjectCreatingLayout from "./component/ProjectCreatingLayout";
 import SetFunding from "./component/StartProjectComponent/SetFunding";
 import RewardTiers from "./component/StartProjectComponent/RewardTiers";
 import AddReward from "./component/StartProjectComponent/AddReward";
 import SetDescription from "./component/StartProjectComponent/SetDescription";
 import Payment from "./component/StartProjectComponent/Payment";
-
+import Login from "./component/Login";
+import Register from "./component/Register";
 
 function App() {
+  const [hasLogin, setHasLogin] = useState(false);
+
+  if (!hasLogin) {
+    return (
+      <div className="App">
+        <DataProvider>
+          <Header setHasLogin={setHasLogin}/>
+          <Login setHasLogin={setHasLogin} />
+        </DataProvider>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
       <DataProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route 
-                path="project/:projectId"
-                element={<HomepageFeaturedProject />}
-              />
-              <Route path="backing" element={<PledgeSummary />} />
-              <Route path="setting/*" element={<SettingPage />} />
-              <Route path="other/*" element={<OtherPage />} />
-              <Route path="/created-project/*" element={<CreatedProject />} />
-            </Route>
-            <Route path="/start-project/*" element={<ProjectCreatingLayout />} >
-              <Route index element={<StartProject />} />
-              <Route path="set-funding" element={<SetFunding />}/>
-              <Route path="reward-tiers" element={<RewardTiers />}/>
-              <Route path='reward-tiers/add-reward' element={<AddReward />} />
-              <Route path="set-description" element={<SetDescription />}/>
-              <Route path="set-payment" element={<Payment />}/>
-            </Route>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Layout setHasLogin={setHasLogin}/>}>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login setHasLogin={setHasLogin}/>} />
+            <Route
+              path="project/:projectId"
+              element={<HomepageFeaturedProject />}
+            />
+            <Route path="backing" element={<PledgeSummary />} />
+            <Route path="setting/*" element={<SettingPage />} />
+            <Route path="other/*" element={<OtherPage />} />
+            <Route path="/created-project/*" element={<CreatedProject />} />
+          </Route>
+          <Route path="/start-project/*" element={<ProjectCreatingLayout />}>
+            <Route index element={<StartProject />} />
+            <Route path="set-funding" element={<SetFunding />} />
+            <Route path="reward-tiers" element={<RewardTiers />} />
+            <Route path="reward-tiers/add-reward" element={<AddReward />} />
+            <Route path="set-description" element={<SetDescription />} />
+            <Route path="set-payment" element={<Payment />} />
+          </Route>
+        </Routes>
       </DataProvider>
     </div>
   );
